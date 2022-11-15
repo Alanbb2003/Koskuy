@@ -3,7 +3,7 @@
 
 @section("content")
     <div class="container square">
-        <h1 style="color : grey">Regis</h1>
+        <h1 style="color : grey">Register</h1>
         <form action=" " method="POST">
           <div class="form-floating mb-3">
             <input type="text" class="form-control" id="inpUser" placeholder="Username">
