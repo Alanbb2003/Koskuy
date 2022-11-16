@@ -31,7 +31,23 @@
     </style>
 </head>
 <body>
+@php
+$msg = "";
+if (session()->has("role"))
+{
+    
+    $msg = session()->get("role");
+}
+@endphp
+@if ($msg == "")
     @include('template.navbar')
+@elseif ($msg == "pelanggan")
+    @include('template.navbarLoggedUser')
+@elseif ($msg == "pemilik")
+    @include('template.navbarLoggedAdmin')
+@endif
+
+    
 
 <div>
     @yield("content")

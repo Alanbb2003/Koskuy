@@ -16,8 +16,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         $d = new User();
-        $d->user_username = "test";
-        $d->user_password = password_hash("123",PASSWORD_DEFAULT);
+        $d->username = "test";
+        $d->password = password_hash("123",PASSWORD_DEFAULT);
         $d->user_telp = "08592212311";
         $d->user_role = 1;
         $d->save();
