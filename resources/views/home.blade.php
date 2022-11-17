@@ -45,7 +45,7 @@
 
 
 <div class="container my-5">
-  
+
 <hr class="my-5">
 
 <!--Carousel Wrapper-->
@@ -78,7 +78,7 @@
           <img class="card-img-top"
                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
           <div class="card-body">
-            <h4 class="card-title">Card title</h4>
+            <h4 class="card-title">Card titleee</h4>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
               card's content.</p>
             <a class="btn btn-primary">Button</a>
@@ -193,6 +193,6 @@
 
 </div>
 <!--/.Carousel Wrapper-->
- 
+
 @endsection
 
