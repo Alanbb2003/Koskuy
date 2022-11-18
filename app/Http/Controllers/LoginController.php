@@ -18,13 +18,6 @@ class LoginController extends Controller
             "inpUser"=>'required',
             "inpPassword"=>'required'
         ]);
-        // $selecteduser = DB::table('user')->where("user_username","=",$request->inpUser)->first();
-
-        // if($selecteduser->user_password == $request->inpPassword){
-        //     Session::put('role',"pelanggan");
-        //     Session::put('user',$selecteduser);
-        //     return redirect('/home')->with("success","berhasil login");
-        // }
 
         $user = $request->input("inpUser");
         $pass = $request->input("inpPassword");
