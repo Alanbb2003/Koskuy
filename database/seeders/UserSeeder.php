@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
     {
         $d = new User();
         $d->username = "test";
+        $d->fullname = "coba";
         $d->password = password_hash("123",PASSWORD_DEFAULT);
         $d->user_telp = "08592212311";
         $d->user_role = 1;
