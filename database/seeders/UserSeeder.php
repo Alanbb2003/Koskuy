@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         $d->username = "test";
         $d->password = password_hash("123",PASSWORD_DEFAULT);
         $d->user_telp = "08592212311";
-        $d->user_role = 1;
+        $d->role = 1;
         $d->save();
     }
 }
