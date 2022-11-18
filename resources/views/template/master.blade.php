@@ -17,7 +17,7 @@
     <style>
         .square {
             margin-top: 220px;
-            height: 400px;
+            height: 500px;
             width: 300px;
             background-color: whitesmoke;
             border-style: outset;
