@@ -45,7 +45,7 @@
 
 
 <div class="container my-5">
-  
+
 <hr class="my-5">
 
 <!--Carousel Wrapper-->
@@ -193,6 +193,6 @@
 
 </div>
 <!--/.Carousel Wrapper-->
- 
+
 @endsection
 
