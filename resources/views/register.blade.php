@@ -12,7 +12,7 @@
                 <div class="col-md-6 col-lg-5 d-none d-md-block">
                   <img src="{{asset('images/register/6368592.jpg')}}"
                     alt="login form" class="img-fluid mt-4" style="border-radius: 1rem 0 0 1rem;" />
-                    <a href="http://www.freepik.com" class="small text-muted ms-5">Designed by storyset / Freepik</a>
+                    <a href="http://www.freepik.com/author/stories" class="small text-muted ms-5">Designed by storyset / Freepik</a>
                 </div>
                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
                   <div class="card-body p-4 p-lg-5 text-black">
@@ -34,6 +34,11 @@
                       <div class="form-floating mb-4">
                         <input type="text" id="regNama" name="regNama" class="form-control form-control-lg" placeholder="Full Name"/>
                         <label class="form-label" for="regNama">Full Name</label>
+                      </div>
+
+                      <div class="form-floating mb-4">
+                        <input type="email" id="regEmail" name="regEmail" class="form-control form-control-lg" placeholder="Email"/>
+                        <label class="form-label" for="regEmail">Email</label>
                       </div>
 
                       <label class="form-label">

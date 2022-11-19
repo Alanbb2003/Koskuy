@@ -29,7 +29,7 @@
                 <div class="col-md-6 col-lg-5 d-none d-md-block">
                   <img src="{{asset('images/login/4957136.jpg')}}"
                     alt="login form" class="img-fluid mt-4" style="border-radius: 1rem 0 0 1rem;" />
-                    <a href="http://www.freepik.com" class="small text-muted ms-5">Designed by storyset / Freepik</a>
+                    <a href="http://www.freepik.com/author/stories" class="small text-muted ms-5">Designed by storyset / Freepik</a>
                 </div>
                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
                   <div class="card-body p-4 p-lg-5 text-black">
