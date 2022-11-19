@@ -43,5 +43,24 @@ class LoginController extends Controller
             return back()->with("error","gagal login");
         }
     }
+    public function RegisterForm(){
+        return view("register");
+    }
+    public function RegisterAction(Request $request){
+        $request->validate([
+            "regUser"=>"required",
+            "regNama"=>"required",
+            "role"=>"required",
+            "regPass"=>"required",
+            "conPass"=>'required|same:regPass'
+        ]);
+
+        $cek = DB::table('user')->where("username","=",$request->regUser)->first();
+        if($cek!=null){
+
+        }else{
+            return back()->with("error","username sudah terpakai");
+        }
+    }
 }
 

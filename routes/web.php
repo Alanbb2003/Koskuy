@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Session;
 
 /*
@@ -27,8 +26,8 @@ Route::post('/login',[LoginController::class,"LoginAction"])->name("loginfunc");
 
 
 
-Route::get('/register',[RegisterController::class,"RegisterForm"]);
-Route::post('/register',[RegisterController::class,"RegisterAction"])->name("registerfunc");
+Route::get('/register',[LoginController::class,"RegisterForm"]);
+Route::post('/register',[LoginController::class,"RegisterAction"])->name("registerfunc");
 
 
 
