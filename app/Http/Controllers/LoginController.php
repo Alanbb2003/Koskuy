@@ -52,14 +52,30 @@ class LoginController extends Controller
             "regNama"=>"required",
             "role"=>"required",
             "regPass"=>"required",
-            "conPass"=>'required|same:regPass'
+            "conPass"=>'required|same:regPass',
+            "regEmail"=>"required",
+            "regTelp"=>"required|numeric|"
         ]);
 
         $cek = DB::table('user')->where("username","=",$request->regUser)->first();
         if($cek!=null){
 
-        }else{
             return back()->with("error","username sudah terpakai");
+        }else{
+
+            $new = new User();
+            $new->username = $request->regUser;
+            $new->fullname = $request->regNama;
+            $new->email = $request->regEmail;
+            $new->password = password_hash($request->regPass,PASSWORD_DEFAULT);
+            $new->user_telp = $request->regTelp;
+            $new->user_role = $request->role;
+            $new->save();
+
+
+            return redirect("/home");
+
+
         }
     }
 }
