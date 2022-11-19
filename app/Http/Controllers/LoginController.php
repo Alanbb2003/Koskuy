@@ -36,7 +36,7 @@ class LoginController extends Controller
                 Session::put('role',"pemilik");
                 Session::put('user',$selecteduser);
                 return redirect('/home')->with("success","berhasil login");
-            }            
+            }
         }
         else
         {
@@ -44,3 +44,4 @@ class LoginController extends Controller
         }
     }
 }
+

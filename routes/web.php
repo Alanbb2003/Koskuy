@@ -24,7 +24,7 @@ Route::get('/about',function(){return view('about');});
 // Route::get('/login',function(){return view('Login');});
 Route::get('/login',[LoginController::class,"LoginForm"]);
 Route::post('/login',[LoginController::class,"LoginAction"])->name("loginfunc");
-    
+
 
 
 Route::get('/register',[RegisterController::class,"RegisterForm"]);
@@ -39,3 +39,4 @@ Route::get('/logout', function () {
     Session::forget('user');
     return redirect()->route('home');
 })->name('logout');
+
