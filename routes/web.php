@@ -38,6 +38,11 @@ Route::middleware('checklogged:pelanggan')->group(function(){
 Route::middleware('checklogged:pemilik')->group(function(){
     Route::prefix('/owner',)->group(function(){
         Route::get('/',function(){return view('home');});
+        Route::get("/dashboard",[PemilikController::class, "HDashboard"]);
+        Route::get("/profile",[PemilikController::class, "HEditProfile"]);
+        Route::get("/kos", [PemilikController::class, "HKos"]);
+        Route::get("/pasangiklan", [PemilikController::class, "HPasangIklan"]);
+        Route::get("/pesanansaya", [PemilikController::class, "HPesananSaya"]);
     });
 });
 
