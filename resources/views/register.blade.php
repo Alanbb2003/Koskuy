@@ -50,13 +50,13 @@
                         Register As
                       </label>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="role" id="pencari">
+                        <input class="form-check-input" type="radio" name="role" id="pencari" value="1">
                         <label class="form-check-label" for="pencari">
                           Pencari
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="role" id="pemilik" checked>
+                        <input class="form-check-input" type="radio" name="role" id="pemilik" value="2">
                         <label class="form-check-label" for="pemilik">
                           Pemilik
                         </label>

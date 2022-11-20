@@ -18,9 +18,14 @@ class Guest
     {
         if(session()->has('role')){
             // Jika iya kembalikan sesuai posisi semula
-            if (session()->get('role') == "pelanggan") return redirect('/home');
-
-            return redirect('/admin');
+            if (session()->get('role') == "pelanggan"){
+                return redirect('/user');
+            }else if(session()->get('role')== "pemilik"){
+                return redirect('/owner');
+            }else{
+                return redirect('/owner');
+            }
+            
         }
         return $next($request);
     }
