@@ -5,7 +5,7 @@
 
 @section("content")
 
-<a href=""><button class="btn btn-success">Tambah Kos</button></a>
+<a href="/owner/HTambahKos"><button class="btn btn-success">Tambah Kos</button></a>
 <br><br>
 <h2>List Kos</h2>
 <table>

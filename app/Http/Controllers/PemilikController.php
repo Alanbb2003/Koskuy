@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class PemilikController extends Controller
 {
+    public function coba(Request $request){
+        dd($request->nama);
+    }
+
 
     //H = Halaman
     public function HDashboard(){
@@ -22,6 +26,9 @@ class PemilikController extends Controller
     }
     public function HPesananSaya(){
         return view("pemilik.pesanansaya");
+    }
+    public function HTambahKos(){
+        return view("pemilik.tambahkos");
     }
 
 

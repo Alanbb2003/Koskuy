@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PemilikController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Middleware\Guest;
 
@@ -43,6 +44,7 @@ Route::middleware('checklogged:pemilik')->group(function(){
         Route::get("/kos", [PemilikController::class, "HKos"]);
         Route::get("/pasangiklan", [PemilikController::class, "HPasangIklan"]);
         Route::get("/pesanansaya", [PemilikController::class, "HPesananSaya"]);
+        Route::get("/HTambahKos", [PemilikController::class, "HTambahKos"]);
     });
 });
 
@@ -53,4 +55,7 @@ Route::get('/logout', function () {
     Session::forget('user');
     return redirect('/');
 })->name('logout');
+
+
+Route::post("/coba",[PemilikController::class, "coba"]);
 
