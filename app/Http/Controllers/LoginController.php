@@ -31,11 +31,11 @@ class LoginController extends Controller
             if($selecteduser->user_role == 1){
                 Session::put('role',"pelanggan");
                 Session::put('user',$selecteduser);
-                return redirect('/home')->with("success","berhasil login");
+                return redirect('/user')->with("success","berhasil login");
             }else if($selecteduser->user_role == 2){
                 Session::put('role',"pemilik");
                 Session::put('user',$selecteduser);
-                return redirect('/home')->with("success","berhasil login");
+                return redirect('/owner')->with("success","berhasil login");
             }
         }
         else
@@ -62,7 +62,6 @@ class LoginController extends Controller
 
             return back()->with("error","username sudah terpakai");
         }else{
-
             $new = new User();
             $new->username = $request->regUser;
             $new->fullname = $request->regNama;
@@ -72,8 +71,7 @@ class LoginController extends Controller
             $new->user_role = $request->role;
             $new->save();
 
-
-            return redirect("/home");
+            return redirect("/login");
 
 
         }

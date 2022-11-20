@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Session;
+use App\Http\Middleware\Guest;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,27 +16,36 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
-Route::get('/', function () {return redirect('/home');});
+// Route::get('/', function () {return redirect('/home');});
+Route::get('/', function () {return view('home');});
 
-Route::get('/home',function(){return view('home');})->name('home');
+// Route::get('/home',function(){return view('home');});
 Route::get('/about',function(){return view('about');});
 
 // Route::get('/login',function(){return view('Login');});
-Route::get('/login',[LoginController::class,"LoginForm"]);
+Route::get('/login',[LoginController::class,"LoginForm"])->middleware([Guest::class]);
 Route::post('/login',[LoginController::class,"LoginAction"])->name("loginfunc");
 
-
-
-Route::get('/register',[LoginController::class,"RegisterForm"]);
+Route::get('/register',[LoginController::class,"RegisterForm"])->middleware([Guest::class]);
 Route::post('/register',[LoginController::class,"RegisterAction"])->name("registerfunc");
 
+Route::middleware('checklogged:pelanggan')->group(function(){
+    Route::prefix('/user',)->group(function(){
+        Route::get('/',function(){return view('home');});
+    });
+});
 
+Route::middleware('checklogged:pemilik')->group(function(){
+    Route::prefix('/owner',)->group(function(){
+        Route::get('/',function(){return view('home');});
+    });
+});
 
 Route::get('/dashboard',function(){return view('admin.dashboard');});
 
 Route::get('/logout', function () {
     Session::forget('role');
     Session::forget('user');
-    return redirect()->route('home');
+    return redirect('/');
 })->name('logout');
 
