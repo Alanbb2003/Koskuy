@@ -81,7 +81,7 @@
         <div class="card-body">
           <h4 class="card-title">{{$k->kos_alamat}}</h4>
           <p class="card-text">{{$k->kos_tipe}}</p>
-          <a class="btn btn-primary">Detail</a>
+          <a class="btn btn-primary" href="{{url('user/detail/'.$k->id)}}">Detail</a>
         </div>
       </div>
     </div>

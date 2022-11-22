@@ -7,9 +7,9 @@
         <ul
           class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
         >
-          <li class="active"><a href="{{url('/')}}">Home</a></li>
+          <li class="active"><a href="{{url('user/')}}">Home</a></li>
           <li class="has-children">
-            <a href="properties.html">Kos</a>
+            <a href="#">Kos</a>
             <ul class="dropdown">
               <li><a href="#">Buy Property</a></li>
               <li><a href="#">Sell Property</a></li>
@@ -23,7 +23,7 @@
               </li> --}}
             </ul>
           </li>
-          <li><a href="services.html">Services</a></li>
+          <li><a href="#">Services</a></li>
           <li><a href="{{url('/about')}}">About</a></li>
           <li>
             <a href="{{url('/logout')}}" class="btn btn-danger">

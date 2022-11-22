@@ -34,7 +34,8 @@ Route::post('/register',[LoginController::class,"RegisterAction"])->name("regist
 
 Route::middleware('checklogged:pelanggan')->group(function(){
     Route::prefix('/user',)->group(function(){
-        Route::get('/',function(){return view('home');});
+        Route::get('/',[Pagecontroller::class,"homepage"]);
+        Route::get('/detail/{id}',[Pagecontroller::class,"detailkos"]);
     });
 });
 
