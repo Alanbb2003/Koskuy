@@ -21,5 +21,13 @@ class KosSeeder extends Seeder
         $k->fasilitas_id = 1;
         $k->kos_harga = "200000";
         $k->save();
+
+        $k = new Kos();
+        $k->kos_alamat = "Surabaya";
+        $k->kos_tipe = "Putri";
+        $k->fasilitas_id = 1;
+        $k->kos_harga = "200000";
+        $k->save();
+
     }
 }

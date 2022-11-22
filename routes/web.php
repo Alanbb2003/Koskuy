@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Pagecontroller;
 use App\Http\Controllers\PemilikController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Middleware\Guest;
@@ -21,7 +22,13 @@ use Illuminate\Support\Facades\DB;
 */
 
 // Route::get('/', function () {return redirect('/home');});
+<<<<<<< HEAD
 Route::get('/', function () {return view('home');});
+=======
+// Route::get('/', function () {return view('home');});
+Route::get('/',[Pagecontroller::class,"homepage"]);
+
+>>>>>>> d1f57b1d551d1f8b8447b7d1a55c6a7c927ad857
 // Route::get('/home',function(){return view('home');});
 Route::get('/about',function(){return view('about');});
 
@@ -34,7 +41,8 @@ Route::post('/register',[LoginController::class,"RegisterAction"])->name("regist
 
 Route::middleware('checklogged:pelanggan')->group(function(){
     Route::prefix('/user',)->group(function(){
-        Route::get('/',function(){return view('home');});
+        Route::get('/',[Pagecontroller::class,"homepage"]);
+        Route::get('/detail/{id}',[Pagecontroller::class,"detailkos"]);
     });
 });
 
