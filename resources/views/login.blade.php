@@ -60,6 +60,9 @@
                       {{-- <a class="small text-muted" href="#!">Forgot password?</a> --}}
                       <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="{{url('/register')}}"
                           style="color: #393f81;">Register here</a></p>
+                          <div>
+                            @include("message")
+                        </div>
                     </form>
                   </div>
                 </div>
