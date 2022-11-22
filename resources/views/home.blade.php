@@ -51,7 +51,7 @@
 <!--Carousel Wrapper-->
 <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
 
-  <!--Controls-->
+  {{-- <!--Controls-->
   <div class="controls-top">
     <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
     <a class="btn-floating" href="#multi-item-example" data-slide="next"><i
@@ -65,15 +65,32 @@
     <li data-target="#multi-item-example" data-slide-to="1"></li>
 
   </ol>
-  <!--/.Indicators-->
+  <!--/.Indicators--> --}}
 
-  <!--Slides-->
+  <div class="overflow-auto">
+    <div class="row text-center">
+    @foreach ($kos as $k)
+    <div class="col-md-3 mx-1" style="float:left">
+      <div class="card mb-2">
+        <img class="card-img-top"
+             src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title">{{$k->kos_alamat}}</h4>
+          <p class="card-text">{{$k->kos_tipe}}</p>
+          <a class="btn btn-primary" href="{{url('user/detail/'.$k->id)}}">Detail</a>
+        </div>
+      </div>
+    </div>
+    @endforeach
+    </div>
+  </div>
+  {{-- <!--Slides-->
   <div class="carousel-inner" role="listbox">
 
     <!--First slide-->
     <div class="carousel-item active">
 
-      @foreach ($kos as $k)
+    @foreach ($kos as $k)
     <div class="col-md-3 mx-2" style="float:left">
       <div class="card mb-2">
         <img class="card-img-top"
@@ -86,7 +103,18 @@
       </div>
     </div>
     @endforeach
-      
+    <div class="col-md-3 mx-2" style="float:left">
+      <div class="card mb-2">
+        <img class="card-img-top"
+             src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title">a</h4>
+          <p class="card-text">a</p>
+          <a class="btn btn-primary" >Detail</a>
+        </div>
+      </div>
+    </div>
+    
     </div>
     <!--/.First slide-->
 
@@ -112,7 +140,7 @@
 
 
   </div>
-  <!--/.Slides-->
+  <!--/.Slides--> --}}
 
 </div>
 <!--/.Carousel Wrapper-->
