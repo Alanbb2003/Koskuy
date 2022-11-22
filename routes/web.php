@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Pagecontroller;
 use App\Http\Controllers\PemilikController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Middleware\Guest;
@@ -18,7 +19,8 @@ use App\Http\Middleware\Guest;
 */
 
 // Route::get('/', function () {return redirect('/home');});
-Route::get('/', function () {return view('home');});
+// Route::get('/', function () {return view('home');});
+Route::get('/',[Pagecontroller::class,"homepage"]);
 
 // Route::get('/home',function(){return view('home');});
 Route::get('/about',function(){return view('about');});
