@@ -25,8 +25,10 @@ use Illuminate\Support\Facades\DB;
 // Route::get('/', function () {return redirect('/home');});
 // Route::get('/', function () {return view('home');});
 Route::get('/',[Pagecontroller::class,"homepage"]);
-
-
+Route::post('/',[Pagecontroller::class,"searchbutton"])->name("searchfunc");;
+Route::view("/kos", "listkos");
+Route::get("/listkos",[Pagecontroller::class,"listkos"])->name("listkos");
+Route::post("/listkos",[Pagecontroller::class,"searchkos"])->name("searchkos");
 // Route::get('/home',function(){return view('home');});
 Route::get('/about',function(){return view('about');});
 
