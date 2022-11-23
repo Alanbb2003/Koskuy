@@ -1,0 +1,64 @@
+@extends("template.master")
+@section("title", "Kos")
+
+@section("content")
+<?php $searchstring = Session::get('searchstring'); ?>
+@if ($searchstring != "")
+    <h1>Search Berdasarkan "{{$searchstring}}"</h1><br>
+@endif
+<form method="post" name="searchinput" action="{{route('searchkos')}}">
+    <input type="text" name="q" placeholder="Masukkan lokasi. contoh : Surabaya"> <button type="submit">Cari</button>
+</form>
+<div id="search-result">
+    <?php $listKos = Session::get('hasilsearch'); ?>
+    @if (count($listKos) <= 0)
+    @foreach ($listKos as $d)
+    <div class="card mb-3">
+        <img src="{{ asset("/storage/gambarkos/" .$d->kos_gambar . ".jpg") }}" class="card-img-top" alt="">
+        <div class="card-body">
+          <h4 class="card-title">{{$d->kos_nama}}</h4>
+          <h5 class="card-title">{{$d->kos_alamat}}</h5>
+          <a href="{{ url("/kos/"
+                .$d->id) }}">
+                <button class="btn btn-primary">Sewa</button>
+          </a>
+        </div>
+      </div>
+    @endforeach
+    @endif
+</div>
+@endsection
+<script>
+    function search(e)
+{
+    e.preventDefault(); // berhentikan form submit
+    console.log(e);
+    var q = new URLSearchParams({ q: e.srcElement.elements.q.value });
+    var req = new Request("{{ url('/master/barang/search-ajax') }}?"+q.toString(), {
+        method: 'GET'
+    });
+
+    fetch(req)
+    .then((resp) => resp.json())
+    .then((d) => {
+        console.log(d);
+        renderHasil(d.data.barang);
+    });
+}
+
+function renderHasil(data)
+{
+    var html = "";
+    data.forEach(el => {
+        html += `<div id='${el.kode_barang}'>
+            Kode : ${el.kode_barang} <br>
+            Nama Barang : ${el.nama_barang} <br>
+            Harga : ${el.harga_barang} <br>
+            Stok : ${el.stok_barang} <br>
+            </div>`;
+    });
+    document
+        .getElementById("search-result")
+        .innerHTML = html;
+}
+</script>

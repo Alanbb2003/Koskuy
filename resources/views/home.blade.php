@@ -26,12 +26,14 @@
           Cari lokasi kos sekarang juga !
         </h1>
         <form
-          action="#"
+          method="POST"
+          action="{{route('searchfunc')}}"
           class="narrow-w form-search d-flex align-items-stretch mb-3"
           data-aos="fade-up"
           data-aos-delay="200"
         >
           <input
+            name="searchinput"
             type="text"
             class="form-control px-4"
             placeholder="Masukkan lokasi. contoh : Surabaya"
@@ -114,7 +116,7 @@
         </div>
       </div>
     </div>
-    
+
     </div>
     <!--/.First slide-->
 
@@ -133,7 +135,7 @@
       </div>
     </div>
     @endforeach
-     
+
     </div>
     <!--/.Second slide-->
 
@@ -146,4 +148,6 @@
 <!--/.Carousel Wrapper-->
 
 @endsection
+
+
 

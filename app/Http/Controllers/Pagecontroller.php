@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kos;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class Pagecontroller extends Controller
 {
@@ -23,5 +25,34 @@ class Pagecontroller extends Controller
         }catch(Exception $x){
             echo $x;
         }
+    }
+
+    public function searchbutton(Request $request){
+
+        $searchstring = $request->searchinput;
+
+        return redirect(url('/listkos'))->with('searchstring',$searchstring);
+    }
+    public function listkos(){
+        $searchstring = Session::get('searchstring');
+        $hasil = Kos::where("kos_alamat",
+            "LIKE", "%".$searchstring."%")->orWhere("kos_nama",
+            "LIKE", "%".$searchstring."%")->orWhere("kos_kota",
+            "LIKE", "%".$searchstring."%")->orWhere("kos_kecamatan",
+            "LIKE", "%".$searchstring."%")->orWhere("kos_kelurahan",
+            "LIKE", "%".$searchstring."%")
+            ->get()->paginate(5);
+        return redirect(url("/kos"))->with('hasilsearch',$hasil)->with('searchstring',$searchstring);
+    }
+    public function searchkos(Request $request){
+        $searchstring = $request->searchinput;
+        $hasil = Kos::where("kos_alamat",
+            "LIKE", "%".$searchstring."%")->orWhere("kos_nama",
+            "LIKE", "%".$searchstring."%")->orWhere("kos_kota",
+            "LIKE", "%".$searchstring."%")->orWhere("kos_kecamatan",
+            "LIKE", "%".$searchstring."%")->orWhere("kos_kelurahan",
+            "LIKE", "%".$searchstring."%")
+            ->get()->paginate(5);
+        return redirect(url("/kos"))->with('hasilsearch',$hasil)->with('searchstring',$searchstring);
     }
 }
