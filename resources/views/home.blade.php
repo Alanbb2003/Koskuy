@@ -78,8 +78,8 @@
         <img class="card-img-top"
              src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
         <div class="card-body">
-          <h4 class="card-title">{{$k->kos_alamat}}</h4>
-          <p class="card-text">{{$k->kos_tipe}}</p>
+          <h4 class="card-title">{{$k->kos_nama}}</h4>
+          <p class="card-text">kos {{$k->kos_tipe}}, {{$k->kos_alamat}}</p>
           <a class="btn btn-primary" href="{{url('user/detail/'.$k->id)}}">Detail</a>
         </div>
       </div>
