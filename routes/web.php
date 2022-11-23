@@ -22,13 +22,10 @@ use Illuminate\Support\Facades\DB;
 */
 
 // Route::get('/', function () {return redirect('/home');});
-<<<<<<< HEAD
-Route::get('/', function () {return view('home');});
-=======
 // Route::get('/', function () {return view('home');});
 Route::get('/',[Pagecontroller::class,"homepage"]);
 
->>>>>>> d1f57b1d551d1f8b8447b7d1a55c6a7c927ad857
+
 // Route::get('/home',function(){return view('home');});
 Route::get('/about',function(){return view('about');});
 
@@ -39,6 +36,10 @@ Route::post('/login',[LoginController::class,"LoginAction"])->name("loginfunc");
 Route::get('/register',[LoginController::class,"RegisterForm"])->middleware([Guest::class]);
 Route::post('/register',[LoginController::class,"RegisterAction"])->name("registerfunc");
 
+
+Route::view("/verif","Email.Hverify")->name("verification.notice");
+Route::get("/verify/{id}/{hash}", [LoginController::class, "verification"])->name('verification.verify');
+
 Route::middleware('checklogged:pelanggan')->group(function(){
     Route::prefix('/user',)->group(function(){
         Route::get('/',[Pagecontroller::class,"homepage"]);
@@ -48,7 +49,7 @@ Route::middleware('checklogged:pelanggan')->group(function(){
 
 Route::middleware('checklogged:pemilik')->group(function(){
     Route::prefix('/owner',)->group(function(){
-        Route::get('/',function(){return view('home');});
+        Route::get('/',[Pagecontroller::class,"homepage"]);
         Route::get("/dashboard",[PemilikController::class, "HDashboard"]);
         Route::get("/profile",[PemilikController::class, "HEditProfile"]);
         Route::get("/kos", [PemilikController::class, "HKos"]);
@@ -61,7 +62,7 @@ Route::middleware('checklogged:pemilik')->group(function(){
         Route::get("/preview", [PemilikController::class, "preview"])->name("preview");
         Route::get('/addKosToDB', function () {
             $kos = Session::get("dataKos");
-            
+
             $kamar = Session::get("dataKamar");
 
             $item = new Kos();
