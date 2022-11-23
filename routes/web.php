@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Pagecontroller;
 use App\Http\Controllers\PemilikController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Middleware\Guest;
@@ -119,11 +120,25 @@ Route::middleware('checklogged:pemilik')->group(function(){
 
 Route::middleware('checklogged:admin')->group(function(){
     Route::prefix('/admin',)->group(function(){
-        Route::get('/',[UserController::class,"homepage"]);
+
+        Route::get('/',[AdminController::class,"toAdmin"])->name("toAdmin"); 
+
+        Route::get('/listPemilik',[AdminController::class,"toListPemilik"])->name("toListPemilik"); 
+
+        Route::get('/listPenyewa',[AdminController::class,"toListPenyewa"])->name("toListPenyewa"); 
+
+        // Route::get('/home', function () {
+        //     if (!Session::has('lognamaL')) {
+        //         return redirect()->route('login');
+        //     }
+        //     $listUser = DB::table('users')->get();
+        //     $listItems = DB::table('item')->get();
+        //     return view("home", ["listUser" => $listUser]);
+        // });
     });
 });
 
-Route::get('/dashboard',function(){return view('admin.dashboard');});
+//Route::get('/dashboard',function(){return view('admin.dashboard');});
 
 Route::get('/logout', function () {
     Session::forget('role');
