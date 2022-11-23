@@ -11,7 +11,7 @@
 </form>
 <div id="search-result">
     <?php $listKos = Session::get('hasilsearch'); ?>
-    @if (count($listKos) <= 0)
+    @if (count($listKos) > 0)
     @foreach ($listKos as $d)
     <div class="card mb-3">
         <img src="{{ asset("/storage/gambarkos/" .$d->kos_gambar . ".jpg") }}" class="card-img-top" alt="">

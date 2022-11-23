@@ -35,6 +35,7 @@ class Pagecontroller extends Controller
     }
     public function listkos(){
         $searchstring = Session::get('searchstring');
+        if($searchstring){
         $hasil = Kos::where("kos_alamat",
             "LIKE", "%".$searchstring."%")->orWhere("kos_nama",
             "LIKE", "%".$searchstring."%")->orWhere("kos_kota",
@@ -42,6 +43,10 @@ class Pagecontroller extends Controller
             "LIKE", "%".$searchstring."%")->orWhere("kos_kelurahan",
             "LIKE", "%".$searchstring."%")
             ->get()->paginate(5);
+        }
+        else{
+            $hasil = DB::table("kos")->paginate(5);
+        }
         return redirect(url("/kos"))->with('hasilsearch',$hasil)->with('searchstring',$searchstring);
     }
     public function searchkos(Request $request){
