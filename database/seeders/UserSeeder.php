@@ -34,5 +34,15 @@ class UserSeeder extends Seeder
         $d->user_role = 2;
         $d->status = 1;
         $d->save();
+
+        $d = new User();
+        $d->username = "admin";
+        $d->fullname = "admin";
+        $d->email = "testing@gmail.com";
+        $d->password = password_hash("admin",PASSWORD_DEFAULT);
+        $d->user_telp = "08592212311";
+        $d->user_role = 3;
+        $d->status = 1;
+        $d->save();
     }
 }
