@@ -38,6 +38,11 @@ class LoginController extends Controller
                 Session::put('user',$selecteduser);
                 return redirect('/owner')->with("success","berhasil login");
             }
+            else if($selecteduser->user_role == 3){
+                Session::put('role',"admin");
+                Session::put('user',$selecteduser);
+                return redirect('/admin')->with("success","berhasil login");
+            }
         }
         else
         {

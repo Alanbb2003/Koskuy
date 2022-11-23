@@ -7,7 +7,7 @@
         <ul
           class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
         >
-          <li class="active"><a href="{{url('/')}}">Home</a></li>
+          <li class="active"><a href="{{url('/')}}">Home admin</a></li>
           <li class="has-children">
             <a href="properties.html">Kos</a>
             <ul class="dropdown">

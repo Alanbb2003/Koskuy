@@ -45,6 +45,8 @@ if (session()->has("role"))
     @include('template.navbarLoggedUser')
 @elseif ($msg == "pemilik")
     @include('template.navbarLoggedpemilik')
+@elseif($msg == "admin")
+    @include('template.navbarLoggedAdmin');
 @endif
 
 <div>

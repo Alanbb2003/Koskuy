@@ -16,18 +16,35 @@ class KosSeeder extends Seeder
     public function run()
     {
         $k = new Kos();
-        $k->kos_alamat = "siduarjo";
+        $k->kos_nama="mudahkos";
         $k->kos_tipe = "Putra";
-        $k->fasilitas_id = 1;
-        $k->kos_harga = "200000";
+        $k->kos_alamat = "siduarjo";
+        $k->kos_deskripsi = "ini adalah data dummy untuk mencoba";
+        $k->kos_gambar = "";
+        $k->kos_notelp = "0849123123";
+        $k->kos_provinsi = "jawa timur";
+        $k->kos_kota = "surabaya";
+        $k->kos_kecamatan = "testkecamatan";
+        $k->kos_kelurahan = "testkelurahan";
+        $k->kos_kodepos = "8499";
+        $k->kos_link = "testlink";
+        $k->owner = "2";
         $k->save();
 
         $k = new Kos();
-        $k->kos_alamat = "Surabaya";
+        $k->kos_nama="mudahkos2";
         $k->kos_tipe = "Putri";
-        $k->fasilitas_id = 1;
-        $k->kos_harga = "200000";
+        $k->kos_alamat = "siduarjo";
+        $k->kos_deskripsi = "ini adalah data dummy untuk mencoba";
+        $k->kos_gambar = "";
+        $k->kos_notelp = "0849123123";
+        $k->kos_provinsi = "jawa timur";
+        $k->kos_kota = "surabaya";
+        $k->kos_kecamatan = "testkecamatan";
+        $k->kos_kelurahan = "testkelurahan";
+        $k->kos_kodepos = "8499";
+        $k->kos_link = "testlink";
+        $k->owner = "2";
         $k->save();
-
     }
 }

@@ -23,7 +23,7 @@ class Guest
             }else if(session()->get('role')== "pemilik"){
                 return redirect('/owner');
             }else{
-                return redirect('/owner');
+                return redirect('/admin');
             }
             
         }

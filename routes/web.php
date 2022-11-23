@@ -115,6 +115,12 @@ Route::middleware('checklogged:pemilik')->group(function(){
     });
 });
 
+Route::middleware('checklogged:admin')->group(function(){
+    Route::prefix('/admin',)->group(function(){
+        Route::get('/',[UserController::class,"homepage"]);
+    });
+});
+
 Route::get('/dashboard',function(){return view('admin.dashboard');});
 
 Route::get('/logout', function () {
