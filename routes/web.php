@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Pagecontroller;
 use App\Http\Controllers\PemilikController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Middleware\Guest;
 
@@ -34,8 +35,9 @@ Route::post('/register',[LoginController::class,"RegisterAction"])->name("regist
 
 Route::middleware('checklogged:pelanggan')->group(function(){
     Route::prefix('/user',)->group(function(){
-        Route::get('/',[Pagecontroller::class,"homepage"]);
-        Route::get('/detail/{id}',[Pagecontroller::class,"detailkos"]);
+        Route::get('/',[UserController::class,"homepage"]);
+        Route::get('/detail/{id}',[UserController::class,"detailkos"]);
+        Route::get('/profile',[UserController::class,"profileuser"]);
     });
 });
 

@@ -13,18 +13,10 @@
             <ul class="dropdown">
               <li><a href="#">Buy Property</a></li>
               <li><a href="#">Sell Property</a></li>
-              {{-- <li class="has-children">
-                <a href="#">Dropdown</a>
-                <ul class="dropdown">
-                  <li><a href="#">Sub Menu One</a></li>
-                  <li><a href="#">Sub Menu Two</a></li>
-                  <li><a href="#">Sub Menu Three</a></li>
-                </ul>
-              </li> --}}
             </ul>
           </li>
           <li><a href="#">Services</a></li>
-          <li><a href="{{url('/about')}}">About</a></li>
+          <li><a href="{{url('/user/profile')}}">Profile</a></li>
           <li>
             <a href="{{url('/logout')}}" class="btn btn-danger">
               Logout
