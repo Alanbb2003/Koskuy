@@ -27,11 +27,12 @@
         </h1>
         <form
           method="POST"
-          action="{{route('searchfunc')}}"
+          action="{{route('searchkos')}}"
           class="narrow-w form-search d-flex align-items-stretch mb-3"
           data-aos="fade-up"
           data-aos-delay="200"
         >
+        @csrf
           <input
             name="searchinput"
             type="text"

@@ -42,7 +42,7 @@ class Pagecontroller extends Controller
             "LIKE", "%".$searchstring."%")->orWhere("kos_kecamatan",
             "LIKE", "%".$searchstring."%")->orWhere("kos_kelurahan",
             "LIKE", "%".$searchstring."%")
-            ->get()->paginate(5);
+            ->paginate(5);
         }
         else{
             $hasil = DB::table("kos")->paginate(5);
@@ -57,7 +57,7 @@ class Pagecontroller extends Controller
             "LIKE", "%".$searchstring."%")->orWhere("kos_kecamatan",
             "LIKE", "%".$searchstring."%")->orWhere("kos_kelurahan",
             "LIKE", "%".$searchstring."%")
-            ->get()->paginate(5);
+            ->paginate(5);
         return redirect(url("/kos"))->with('hasilsearch',$hasil)->with('searchstring',$searchstring);
     }
 }

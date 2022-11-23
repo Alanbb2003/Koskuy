@@ -2,12 +2,21 @@
 @section("title", "Kos")
 
 @section("content")
+<br><br><br><br><br>
 <?php $searchstring = Session::get('searchstring'); ?>
 @if ($searchstring != "")
     <h1>Search Berdasarkan "{{$searchstring}}"</h1><br>
 @endif
-<form method="post" name="searchinput" action="{{route('searchkos')}}">
-    <input type="text" name="q" placeholder="Masukkan lokasi. contoh : Surabaya"> <button type="submit">Cari</button>
+<form method="post"  action="{{route('searchkos')}}">
+@csrf
+<div class="input-group">
+    <div class="form-outline">
+      <input  type="text" name="searchinput" placeholder="Masukkan lokasi. contoh : Surabaya"  class="form-control" />
+    </div>
+    <button id="search-button" type="submit" class="btn btn-primary">
+      Search
+    </button>
+  </div>
 </form>
 <div id="search-result">
     <?php $listKos = Session::get('hasilsearch'); ?>
