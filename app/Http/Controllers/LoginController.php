@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -62,19 +63,42 @@ class LoginController extends Controller
 
             return back()->with("error","username sudah terpakai");
         }else{
-            $new = new User();
-            $new->username = $request->regUser;
-            $new->fullname = $request->regNama;
-            $new->email = $request->regEmail;
-            $new->password = password_hash($request->regPass,PASSWORD_DEFAULT);
-            $new->user_telp = $request->regTelp;
-            $new->user_role = $request->role;
-            $new->save();
+            // $new = new User();
+            // $new->username = $request->regUser;
+            // $new->fullname = $request->regNama;
+            // $new->email = $request->regEmail;
+            // $new->password = password_hash($request->regPass,PASSWORD_DEFAULT);
+            // $new->user_telp = $request->regTelp;
+            // $new->user_role = $request->role;
+            // $new->save();
 
-            return redirect("/login");
+            $result = User::create([
+                "email"=> $request->regEmail,
+                "username" => $request->regUser,
+                "fullname"=> $request->regNama,
+                "password" => password_hash($request->regPass,PASSWORD_DEFAULT),
+                "user_telp" => $request->regTelp,
+                "user_role" => $request->role,
+                "status" => 1
+
+            ]);
+
+            $result->sendEmailVerificationNotification();
+
+            return redirect(url("/verif"))->with("email", $request->regEmail);
+            // return redirect("/login");
 
 
         }
+    }
+
+
+    public function verification(EmailVerificationRequest $r){
+
+        $r->fulfill();
+
+        $link = url("/");
+        return response()->view("Email.HEmailDone")->withHeaders(["Refresh"=>"4;url=$link"]);
     }
 }
 

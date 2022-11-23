@@ -11,5 +11,4 @@ class Kos extends Model
 
     public $table = "kos";
     // public $primaryKey = "kos_id";
-
 }

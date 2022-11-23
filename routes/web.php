@@ -7,6 +7,9 @@ use App\Http\Controllers\PemilikController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Middleware\Guest;
+use App\Models\Kamar;
+use App\Models\Kos;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +26,7 @@ use App\Http\Middleware\Guest;
 // Route::get('/', function () {return view('home');});
 Route::get('/',[Pagecontroller::class,"homepage"]);
 
+
 // Route::get('/home',function(){return view('home');});
 Route::get('/about',function(){return view('about');});
 
@@ -32,6 +36,10 @@ Route::post('/login',[LoginController::class,"LoginAction"])->name("loginfunc");
 
 Route::get('/register',[LoginController::class,"RegisterForm"])->middleware([Guest::class]);
 Route::post('/register',[LoginController::class,"RegisterAction"])->name("registerfunc");
+
+
+Route::view("/verif","Email.Hverify")->name("verification.notice");
+Route::get("/verify/{id}/{hash}", [LoginController::class, "verification"])->name('verification.verify');
 
 Route::middleware('checklogged:pelanggan')->group(function(){
     Route::prefix('/user',)->group(function(){
@@ -43,13 +51,67 @@ Route::middleware('checklogged:pelanggan')->group(function(){
 
 Route::middleware('checklogged:pemilik')->group(function(){
     Route::prefix('/owner',)->group(function(){
-        Route::get('/',function(){return view('home');});
+        Route::get('/',[Pagecontroller::class,"homepage"]);
         Route::get("/dashboard",[PemilikController::class, "HDashboard"]);
         Route::get("/profile",[PemilikController::class, "HEditProfile"]);
         Route::get("/kos", [PemilikController::class, "HKos"]);
         Route::get("/pasangiklan", [PemilikController::class, "HPasangIklan"]);
         Route::get("/pesanansaya", [PemilikController::class, "HPesananSaya"]);
         Route::get("/HTambahKos", [PemilikController::class, "HTambahKos"]);
+        Route::post("/doAddKos", [PemilikController::class, "doAddKos"])->name("doAddKos");
+        Route::get("/doAddKamar", [PemilikController::class, "tambahkamar"])->name("tambahkamar");
+        Route::post("/doAddKamar", [PemilikController::class, "doAddKamar"])->name("doAddKamar");
+        Route::get("/preview", [PemilikController::class, "preview"])->name("preview");
+        Route::get('/addKosToDB', function () {
+            $kos = Session::get("dataKos");
+
+            $kamar = Session::get("dataKamar");
+
+            $item = new Kos();
+            $item->kos_nama = $kos->nama;
+            $item->kos_tipe = $kos->tipe;
+            $item->kos_alamat = $kos->alamat;
+            $item->kos_deskripsi = $kos->deskripsi;
+            $item->kos_gambar = $kos->kos_gambar;
+            $item->kos_notelp = $kos->notelp;
+            $item->kos_provinsi = $kos->provinsi;
+            $item->kos_kota = $kos->kota;
+            $item->kos_kecamatan = $kos->kecamatan;
+            $item->kos_kelurahan = $kos->kelurahan;
+            $item->kos_kodepos = $kos->kodepos;
+            $item->kos_link = $kos->link;
+            $item->owner = $kos->owner;
+            $item->save();
+
+            $idkos =  DB::table("kos")->where("kos_nama","=",$kos->nama)->get()->first();
+            // dd($idkos->id);
+            $k = new Kamar();
+            $k->jenis_kamar = $kamar->jenis;
+            $k->harga_kamar = $kamar->harga;
+            $k->jumlah_kamar = $kamar->jumlah;
+            $k->luas_kamar = $kamar->luas;
+            $k->status_kamar = $kamar->status;
+            $k->deskripsi_kamar = $kamar->deskripsi;
+            if ($kamar->ac != null) {
+                $k->ac = 1;
+            }
+            if ($kamar->kmd != null) {
+                $k->kmd = 1;
+            }
+            if ($kamar->wifi != null) {
+                $k->wifi = 1;
+            }
+            if ($kamar->tv != null) {
+                $k->tv = 1;
+            }
+            if ($kamar->kulkas != null) {
+                $k->kulkas = 1;
+            }
+            $k->gambar_kamar = $kamar->gambar_kamar;
+            $k->kos_id = $idkos->id;
+            $k->save();
+            return redirect('/')->with("success","Berhasil melakukan transaksi!");
+        })->name('addKosToDB');
     });
 });
 

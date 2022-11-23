@@ -77,6 +77,9 @@
                       </div>
                       <p class="mb-5 pb-lg-2" style="color: #393f81;">have an account ? <a href="{{url('/login')}}"
                           style="color: #393f81;">Login here</a></p>
+                          <div>
+                            @include("message")
+                        </div>
                     </form>
                   </div>
                 </div>
