@@ -40,6 +40,26 @@ class PemilikController extends Controller
     public function preview(){
         return view("pemilik.preview");
     }
+    public function Hgantipass(){
+        return view("pemilik.gantipass");
+    }
+    public function gantipass(Request $req){
+
+        
+        dd()
+        // if ($req->validate(
+        //     [
+        //         ''
+        //     ],
+        //     [
+
+        //     ]
+        // )) {
+        //     # code...
+        // }
+
+        return view("pemilik.gantipass");
+    }
     public function doAddKos(Request $request){
         $nama = $request->input("nama");
         $tipe = $request->input("tipe");
@@ -53,7 +73,7 @@ class PemilikController extends Controller
         $kelurahan = $request->input("kelurahan");
         $kodepos = $request->input("kodepos");
         $link = $request->input("link");
- 
+
         $user = Session::get('user');
         $iduser = $user->id;
 
@@ -80,7 +100,7 @@ class PemilikController extends Controller
         $namaFolderPhoto = "gambar/";
         // storeAs akan menyimpan default ke local
         $gambar->storeAs($namaFolderPhoto,$namaFileGambar, 'public'); // masuk ke storage/app/public
-        
+
         if ($nama == "" || $tipe == "" || $alamat == ""|| $deskripsi == ""|| $notelp == ""|| $provinsi == ""|| $kota == ""|| $kecamatan == "" || $kelurahan == "" || $kodepos == "" || $link == "") {
             return redirect()->route('tambahkos')->with("error", "Field Harus terisi semua!");
         } else {
@@ -140,7 +160,7 @@ class PemilikController extends Controller
         $namaFolderPhoto = "gambar/";
         // storeAs akan menyimpan default ke local
         $gambar->storeAs($namaFolderPhoto,$namaFileGambar, 'public'); // masuk ke storage/app/public
-        
+
         if ($jenis == "" || $harga == "" || $jumlah == ""|| $luas == ""|| $status == ""|| $deskripsi == "") {
             return redirect()->route('tambahkamar')->with("error", "Field Harus terisi semua!");
         } else {

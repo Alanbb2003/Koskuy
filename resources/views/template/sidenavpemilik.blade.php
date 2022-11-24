@@ -28,7 +28,11 @@
                                 <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Edit Profile</span>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="/owner/Hgantipass" class="nav-link align-middle px-0">
+                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Ganti Password</span>
+                            </a>
+                        </li>
                         <li>
                             <a href="/owner/kos" class="nav-link px-0 align-middle">
                                 <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Kos</span> </a>

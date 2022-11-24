@@ -60,6 +60,8 @@ Route::middleware('checklogged:pemilik')->group(function(){
         Route::get("/kos", [PemilikController::class, "HKos"]);
         Route::get("/pasangiklan", [PemilikController::class, "HPasangIklan"]);
         Route::get("/pesanansaya", [PemilikController::class, "HPesananSaya"]);
+        Route::get("/Hgantipass", [PemilikController::class, "Hgantipass"]);
+        Route::post("/gantipass", [PemilikController::class, "gantipass"]);
         Route::get("/HTambahKos", [PemilikController::class, "HTambahKos"]);
         Route::post("/doAddKos", [PemilikController::class, "doAddKos"])->name("doAddKos");
         Route::get("/doAddKamar", [PemilikController::class, "tambahkamar"])->name("tambahkamar");
@@ -121,11 +123,11 @@ Route::middleware('checklogged:pemilik')->group(function(){
 Route::middleware('checklogged:admin')->group(function(){
     Route::prefix('/admin',)->group(function(){
 
-        Route::get('/',[AdminController::class,"toAdmin"])->name("toAdmin"); 
+        Route::get('/',[AdminController::class,"toAdmin"])->name("toAdmin");
 
-        Route::get('/listPemilik',[AdminController::class,"toListPemilik"])->name("toListPemilik"); 
+        Route::get('/listPemilik',[AdminController::class,"toListPemilik"])->name("toListPemilik");
 
-        Route::get('/listPenyewa',[AdminController::class,"toListPenyewa"])->name("toListPenyewa"); 
+        Route::get('/listPenyewa',[AdminController::class,"toListPenyewa"])->name("toListPenyewa");
 
         // Route::get('/home', function () {
         //     if (!Session::has('lognamaL')) {
