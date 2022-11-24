@@ -45,8 +45,8 @@ class PemilikController extends Controller
     }
     public function gantipass(Request $req){
 
-        
-        dd()
+
+        // dd()
         // if ($req->validate(
         //     [
         //         ''
