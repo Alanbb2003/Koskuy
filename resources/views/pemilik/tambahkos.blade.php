@@ -8,6 +8,20 @@
 <h2>Tambah Kos</h2>
 <form action="{{ route('doAddKos') }}" method="post" enctype="multipart/form-data">
     @csrf
+    Pilih Paket
+    <br>
+    (nama - harga - lama iklan)
+<br>
+    <select name="paketkos" id="" class="form-select" style="width: 400px">
+        @for ($i = 0; $i < count($paket);$i++)
+
+            <option value="{{$paket[$i]->id}}">{{$paket[$i]->nama_paket." - ".$paket[$i]->harga." - ".$paket[$i]->waktu }}</option>
+
+
+
+        @endfor
+    </select>
+    <br><br>
     Nama Kos
     <input type="text" class="form-control" style="width: 400px" name="nama">
     <span style="color: red;">{{ $errors->first('nama') }}</span>

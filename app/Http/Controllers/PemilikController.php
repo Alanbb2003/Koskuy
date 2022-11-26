@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HPembayaran;
 use App\Models\Kamar;
 use App\Models\Kos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
@@ -23,16 +25,25 @@ class PemilikController extends Controller
         return view("pemilik.profile");
     }
     public function HKos(){
-        return view("pemilik.kos");
+        $user = Session::get('user');
+        $iduser = $user->id;
+
+        $data = DB::table('kos')->where("owner" ,'=',$iduser)->where("status",'=','aktif')->get();
+
+        return view("pemilik.kos",["datakos" => $data]);
     }
     public function HPasangIklan(){
+
+
+
         return view("pemilik.pasangiklan");
     }
     public function HPesananSaya(){
         return view("pemilik.pesanansaya");
     }
     public function HTambahKos(){
-        return view("pemilik.tambahkos");
+        $paket = DB::table("paket_iklan")->get();
+        return view("pemilik.tambahkos",["paket"=>$paket]);
     }
     public function tambahkamar(){
         return view("pemilik.tambahkamar");
@@ -42,6 +53,47 @@ class PemilikController extends Controller
     }
     public function Hgantipass(){
         return view("pemilik.gantipass");
+    }
+    public function HRiwayatTransaksi(){
+        $user = Session::get('user');
+        $iduser = $user->id;
+        $h = DB::table("h_pembayaran")->where("user_id",'=',$iduser)->get();
+        $datatrans = DB::table("h_pembayaran")->join("kos","kos.id",'=','h_pembayaran.kos_id')->join("paket_iklan",'paket_iklan.id','=','h_pembayaran.paket_id')->where("user_id",'=',$iduser)->get();
+
+        return view("pemilik.riwayattransaksi", ["datatrans"=> $datatrans, "h"=>$h]);
+    }
+
+    public function HUploadBukti($id){
+
+        return view("pemilik.uploadbukti",["idhp"=>$id]);
+
+    }
+
+    public function UploadBukti(Request $req, $id){
+
+        if ($req->validate(
+            [
+                "buktitf" =>"required"
+            ],
+            [
+
+            ]
+        )) {
+            # code...
+            $bukti = $req->file("buktitf");
+            $namafile = Str::random(8).'.'.$bukti->getClientOriginalExtension();
+
+            $namaFolderPhoto = "bukti/";
+            $bukti->storeAs($namaFolderPhoto, $namafile, 'public');
+
+            $hp = HPembayaran::find($id);
+            $hp->bukti = $namafile;
+            $hp->save();
+
+            return redirect('/owner/riwayattransaksi');
+        }
+
+
     }
     public function gantipass(Request $req){
 
@@ -73,6 +125,7 @@ class PemilikController extends Controller
         $kelurahan = $request->input("kelurahan");
         $kodepos = $request->input("kodepos");
         $link = $request->input("link");
+        $paket = $request->paketkos;
 
         $user = Session::get('user');
         $iduser = $user->id;
@@ -118,6 +171,7 @@ class PemilikController extends Controller
             $item->kodepos = $request->kodepos;
             $item->link = $request->link;
             $item->owner = $iduser;
+            $item->paket = $paket;
             Session::put("dataKos", $item);
             // $item->save();
             // $coba = Item::create($addItem);

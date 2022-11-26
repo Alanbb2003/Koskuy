@@ -19,31 +19,35 @@
                     </a>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                         <li class="nav-item">
-                            <a href="/home" class="nav-link align-middle px-0">
+                            <a href="{{url('/')}}" class="nav-link align-middle px-0">
                                 <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/owner/profile" class="nav-link align-middle px-0">
+                            <a href="{{url('/owner/profile')}}" class="nav-link align-middle px-0">
                                 <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Edit Profile</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/owner/Hgantipass" class="nav-link align-middle px-0">
+                            <a href="{{url('/owner/Hgantipass')}}" class="nav-link align-middle px-0">
                                 <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Ganti Password</span>
                             </a>
                         </li>
                         <li>
-                            <a href="/owner/kos" class="nav-link px-0 align-middle">
+                            <a href="{{url('/owner/kos')}}" class="nav-link px-0 align-middle">
                                 <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Kos</span> </a>
                         </li>
                         <li>
-                            <a href="owner/pasangiklan" class="nav-link px-0 align-middle">
+                            <a href="{{url('/owner/pasangiklan')}}" class="nav-link px-0 align-middle">
                                 <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Pasang Iklan</span> </a>
                         </li>
                         <li>
-                            <a href="owner/pesanansaya" class="nav-link px-0 align-middle">
+                            <a href="{{url('/owner/pesanansaya')}}" class="nav-link px-0 align-middle">
                                 <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Pesanan saya</span> </a>
+                        </li>
+                        <li>
+                            <a href="{{url('/owner/riwayattransaksi')}}" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Riwayat Transaksi</span> </a>
                         </li>
                     </ul>
                     <hr>
