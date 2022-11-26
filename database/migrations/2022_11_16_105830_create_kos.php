@@ -28,6 +28,9 @@ return new class extends Migration
             $table->string("kos_kodepos");
             $table->string("kos_link");
             $table->integer("owner");
+            $table->string("status");
+            $table->date("tanggal_awal")->nullable();
+            $table->date("tangal_akhir")->nullable();
             // $table->integer("fasilitas_id");
             // $table->string("kos_harga");
             $table->timestamps();

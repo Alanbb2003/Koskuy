@@ -14,13 +14,22 @@ return new class extends Migration
     public function up()
     {
         Schema::create('h_pembayaran', function (Blueprint $table) {
+            // JANGAN DIHAPUS
+            // $table->increments("id");
+            // $table->integer("paket_id");
+            // $table->integer("user_id");
+            // $table->date("tangal_tagih");
+            // $table->date("tangal_bayar");
+            // $table->date("tangal_mulai_sewa");
+            // $table->date("tangal_akhir_sewa");
+            // $table->integer("status");
+            // $table->timestamps();
             $table->increments("id");
-            $table->integer("paket_id");
             $table->integer("user_id");
-            $table->date("tangal_tagih");
-            $table->date("tangal_bayar");
-            $table->date("tangal_mulai_sewa");
-            $table->date("tangal_akhir_sewa");
+            $table->integer("paket_id");
+            $table->integer("kos_id");
+            $table->integer("harga");
+            $table->string("bukti");
             $table->integer("status");
             $table->timestamps();
         });

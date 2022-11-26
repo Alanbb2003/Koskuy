@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function homepage(){
 
-        $k = DB::table("kos")->get();
+        $k = DB::table("kos")->where("status",'=',"aktif")->get();
 
         return view("home",['kos'=>$k]);
     }
@@ -42,7 +42,7 @@ class UserController extends Controller
         return view("user.history",['havehistory'=>$havehistory,'history'=>$history]);
     }
     public function editpage(){
-        
+
         return view("user.editprofile");
     }
 }

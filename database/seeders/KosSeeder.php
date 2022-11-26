@@ -29,6 +29,7 @@ class KosSeeder extends Seeder
         $k->kos_kodepos = "8499";
         $k->kos_link = "testlink";
         $k->owner = "2";
+        $k->status = "aktif";
         $k->save();
 
         $k = new Kos();
@@ -45,6 +46,7 @@ class KosSeeder extends Seeder
         $k->kos_kodepos = "8499";
         $k->kos_link = "testlink";
         $k->owner = "2";
+        $k->status = "aktif";
         $k->save();
     }
 }
