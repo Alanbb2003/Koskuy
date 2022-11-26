@@ -2,10 +2,13 @@
 @section("title", "Kos")
 
 @section("content")
-<br><br><br><br><br>
+<br><br><br><br><br><br><br>
+<div class="container mt-5">
 <?php $searchstring = Session::get('searchstring'); ?>
 @if ($searchstring != "")
-    <h1>Search Berdasarkan "{{$searchstring}}"</h1><br>
+<div class="position-absolute start-50 translate-middle">
+  <h1>Search Berdasarkan "{{$searchstring}}"</h1><br>
+</div>
 @endif
 <form method="post"  action="{{route('searchkos')}}">
 @csrf
@@ -35,6 +38,7 @@
       </div>
     @endforeach
     @endif
+</div>
 </div>
 @endsection
 <script>

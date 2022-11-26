@@ -26,6 +26,19 @@ class UserController extends Controller
     }
     public function profileuser(){
         $user = Session()->get('user');
-        return view("user.profile",["user"=>$user]);
+        $countkos = DB::table('h_pembayaran')->where("user_id","=",$user->id)->count();
+        return view("user.profile",["user"=>$user,"countkos"=>$countkos]);
+    }
+    public function historypage(){
+        $user = Session::get('user');
+        $data= json_decode( json_encode($user), true);
+        $userid = $data['id'];
+        $history = DB::table("h_pembayaran")->where("user_id","=",$userid)->get();
+        if($history != null){
+            $havehistory ="have";
+        }else{
+            $havehistory ="none";
+        }
+        return view("user.history",['havehistory'=>$havehistory,'history'=>$history]);
     }
 }

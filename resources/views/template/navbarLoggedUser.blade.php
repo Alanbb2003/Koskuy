@@ -11,11 +11,10 @@
           <li class="has-children">
             <a href="#">Kos</a>
             <ul class="dropdown">
-              <li><a href="/listkos">Buy Property</a></li>
-              <li><a href="#">Sell Property</a></li>
+              <li><a href="{{url('/listkos')}}">Pesan Kos</a></li>
+              <li><a href="{{url('/user/history')}}">History pemesanan</a></li>
             </ul>
           </li>
-          <li><a href="#">Services</a></li>
           <li><a href="{{url('/user/profile')}}">Profile</a></li>
           <li>
             <a href="{{url('/logout')}}" class="btn btn-danger">

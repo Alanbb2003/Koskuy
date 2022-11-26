@@ -49,6 +49,7 @@ Route::middleware('checklogged:pelanggan')->group(function(){
         Route::get('/',[UserController::class,"homepage"]);
         Route::get('/detail/{id}',[UserController::class,"detailkos"]);
         Route::get('/profile',[UserController::class,"profileuser"]);
+        Route::get('/history',[UserController::class,"historypage"]);
     });
 });
 
