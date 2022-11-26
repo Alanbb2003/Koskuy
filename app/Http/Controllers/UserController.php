@@ -41,4 +41,8 @@ class UserController extends Controller
         }
         return view("user.history",['havehistory'=>$havehistory,'history'=>$history]);
     }
+    public function editpage(){
+        
+        return view("user.editprofile");
+    }
 }
