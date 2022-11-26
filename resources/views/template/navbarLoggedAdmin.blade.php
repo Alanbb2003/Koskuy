@@ -8,10 +8,11 @@
           <li class="active"><a href="{{url('/admin')}}">Home admin</a></li>
 
           <li class="has-children ">
-            <a href="properties.html">List</a>
+            <a href="{{url('#')}}">Menu</a>
             <ul class="dropdown " >
               <li><a href="{{url('/admin/listPemilik')}}">List Pemilik</a></li>
               <li><a href="{{url('/admin/listPenyewa')}}">List Penyewa</a></li>
+              <li><a href="{{url('/admin/listpesanan')}}">Pesanan</a></li>
             </ul>
           </li>
 

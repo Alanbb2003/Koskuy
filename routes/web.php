@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Middleware\Guest;
+use App\Models\HPembayaran;
 use App\Models\Kamar;
 use App\Models\Kos;
 use Illuminate\Support\Facades\DB;
@@ -64,7 +65,11 @@ Route::middleware('checklogged:pemilik')->group(function(){
         Route::get("/pesanansaya", [PemilikController::class, "HPesananSaya"]);
         Route::get("/Hgantipass", [PemilikController::class, "Hgantipass"]);
         Route::post("/gantipass", [PemilikController::class, "gantipass"]);
-        Route::get("/HTambahKos", [PemilikController::class, "HTambahKos"]);
+        // Route::get("/HTambahKos", [PemilikController::class, "HTambahKos"]);
+        Route::get("/pasangiklan",[PemilikController::class, "HTambahKos"]);
+        Route::get("/riwayattransaksi",[PemilikController::class, "HRiwayatTransaksi"]);
+        Route::get("/Huploadbukti/{id}",[PemilikController::class, "HUploadBukti"]);
+        Route::post("/uploadbukti/{id}",[PemilikController::class, "UploadBukti"]);
         Route::post("/doAddKos", [PemilikController::class, "doAddKos"])->name("doAddKos");
         Route::get("/doAddKamar", [PemilikController::class, "tambahkamar"])->name("tambahkamar");
         Route::post("/doAddKamar", [PemilikController::class, "doAddKamar"])->name("doAddKamar");
@@ -88,6 +93,7 @@ Route::middleware('checklogged:pemilik')->group(function(){
             $item->kos_kodepos = $kos->kodepos;
             $item->kos_link = $kos->link;
             $item->owner = $kos->owner;
+            $item->status = "nonaktif";
             $item->save();
 
             $idkos =  DB::table("kos")->where("kos_nama","=",$kos->nama)->get()->first();
@@ -117,6 +123,21 @@ Route::middleware('checklogged:pemilik')->group(function(){
             $k->gambar_kamar = $kamar->gambar_kamar;
             $k->kos_id = $idkos->id;
             $k->save();
+
+            $detailpaket = DB::table("paket_iklan")->where("id", "=",$kos->paket)->first();
+
+            $hpembayaran = new HPembayaran();
+            $hpembayaran->user_id = $kos->owner;
+            $hpembayaran->paket_id = $kos->paket;
+            $hpembayaran->kos_id = $item->id;
+            $hpembayaran->harga = $detailpaket->harga;
+            $hpembayaran->status = 0;
+            $hpembayaran->save();
+
+
+
+
+
             return redirect('/')->with("success","Berhasil melakukan transaksi!");
         })->name('addKosToDB');
     });
@@ -131,6 +152,9 @@ Route::middleware('checklogged:admin')->group(function(){
 
         Route::get('/listPenyewa',[AdminController::class,"toListPenyewa"])->name("toListPenyewa");
 
+        Route::get('/listpesanan',[AdminController::class, "HListPesanan"]);
+
+        Route::get('/konfirmasipesanan/{id}',[AdminController::class, "KonfirmasiPesanan"]);
         // Route::get('/home', function () {
         //     if (!Session::has('lognamaL')) {
         //         return redirect()->route('login');

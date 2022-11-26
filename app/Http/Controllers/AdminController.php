@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HPembayaran;
+use App\Models\Kos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -34,5 +36,27 @@ class AdminController extends Controller
         return view("admin.listpemilik", ["listUser" => $listUser]);
     }
 
-    
+
+    public function HListPesanan(){
+        $h = DB::table("h_pembayaran")->get();
+        $data = DB::table("h_pembayaran")->join("user",'user.id','=','h_pembayaran.user_id')->join("kos","kos.id",'=','h_pembayaran.kos_id')->join("paket_iklan",'paket_iklan.id','=','h_pembayaran.paket_id')->get();
+
+        return view("admin.listpesanan",["data" => $data, "h"=>$h]);
+    }
+
+    public function KonfirmasiPesanan($id){
+
+        $hp = HPembayaran::find($id);
+        $hp->status = "2";
+        $hp->save();
+
+        $kos = Kos::find($hp->kos_id);
+        $kos->status = "aktif";
+        $kos->save();
+
+        return redirect('/admin/listpesanan');
+
+    }
+
+
 }
