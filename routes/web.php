@@ -52,6 +52,7 @@ Route::middleware('checklogged:pelanggan')->group(function(){
         Route::get('/profile',[UserController::class,"profileuser"]);
         Route::get('/history',[UserController::class,"historypage"]);
         Route::get('/edit',[UserController::class,"editpage"]);
+        Route::post('/edit',[UserController::class,"editfunc"])->name('saveedit');
     });
 });
 

@@ -25,8 +25,11 @@ class UserController extends Controller
         }
     }
     public function profileuser(){
-        $user = Session()->get('user');
-        $countkos = DB::table('h_pembayaran')->where("user_id","=",$user->id)->count();
+        $userid = Session::get('user');
+        $data= json_decode( json_encode($userid), true);
+        $userid = $data['id'];
+        $user = DB::table('user')->where("id","=",$userid)->first();
+        $countkos = DB::table('h_pembayaran')->where("user_id","=",$userid)->count();
         return view("user.profile",["user"=>$user,"countkos"=>$countkos]);
     }
     public function historypage(){
@@ -44,5 +47,24 @@ class UserController extends Controller
     public function editpage(){
 
         return view("user.editprofile");
+    }
+    public function editfunc(Request $request){
+        $request->validate([
+            "edtusername"=>"required",
+            "edtfullname"=>"required",
+            "edtnumber"=>"required|numeric",
+        ]);
+
+        $result = DB::update('update user set username = ?, fullname = ?, user_telp = ?',[
+            $request->edtusername,
+            $request->edtfullname,
+            $request->edtnumber
+        ]);
+
+        if($result){
+            return redirect('/user/profile')->with("success", "berhasil ubah profile user ");
+        }else{
+            return redirect('/user/profile')->with("error", "Gagal ubah prodile user ");
+        }
     }
 }
