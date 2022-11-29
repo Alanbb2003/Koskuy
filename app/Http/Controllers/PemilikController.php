@@ -130,6 +130,7 @@ class PemilikController extends Controller
 
             $hp = HPembayaran::find($id);
             $hp->bukti = $namafile;
+            $hp->status = 1;
             $hp->save();
 
             return redirect('/owner/riwayattransaksi');

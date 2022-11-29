@@ -29,7 +29,7 @@ return new class extends Migration
             $table->integer("paket_id");
             $table->integer("kos_id");
             $table->integer("harga");
-            $table->string("bukti");
+            $table->string("bukti")->nullable();
             $table->integer("status");
             $table->timestamps();
         });

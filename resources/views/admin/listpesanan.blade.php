@@ -26,6 +26,7 @@
             <th scope="col">Harga</th>
             <th scope="col">Tanggal Transaksi</th>
             <th scope="col">Status</th>
+            <th scope="col">Bukti Transfer</th>
             <th scope="col">Action</th>
             {{-- <td></td> --}}
         </tr>
@@ -45,6 +46,15 @@
                 Menunggu Konfirmasi
                 @else
                 Sudah Bayar
+                @endif
+            </td>
+            <td>
+                @if ($h[$i]->bukti != null)
+
+                <img src="{{asset('/storage/bukti/'.$h[$i]->bukti)}}" style="width: 100px; height:100px ;">
+                @else
+                    Belum Ada
+
                 @endif
             </td>
             <td>
