@@ -28,10 +28,9 @@ use Illuminate\Support\Facades\DB;
 // Route::get('/', function () {return redirect('/home');});
 // Route::get('/', function () {return view('home');});
 Route::get('/',[Pagecontroller::class,"homepage"]);
-Route::post('/',[Pagecontroller::class,"searchbutton"])->name("searchfunc");;
-Route::view("/kos", "listkos");
-Route::get("/listkos",[Pagecontroller::class,"listkos"])->name("listkos");
-Route::post("/listkos",[Pagecontroller::class,"searchkos"])->name("searchkos");
+Route::post('/',[Pagecontroller::class,"searchbutton"])->name("searchfunc");
+Route::get("/kos",[Pagecontroller::class,"listkos"])->name("listkos");
+Route::post("/kos",[Pagecontroller::class,"searchkos"])->name("searchkos");
 // Route::get('/home',function(){return view('home');});
 Route::get('/about',function(){return view('about');});
 
@@ -77,6 +76,9 @@ Route::middleware('checklogged:pemilik')->group(function(){
         Route::post("/doAddKos", [PemilikController::class, "doAddKos"])->name("doAddKos");
         Route::get("/doAddKamar", [PemilikController::class, "tambahkamar"])->name("tambahkamar");
         Route::post("/doAddKamar", [PemilikController::class, "doAddKamar"])->name("doAddKamar");
+
+        Route::get("/detailkos/{id}",[PemilikController::class, "detailKos"])->name("detailkos");
+
         Route::get("/preview", [PemilikController::class, "preview"])->name("preview");
         Route::get('/addKosToDB', function () {
             $kos = Session::get("dataKos");

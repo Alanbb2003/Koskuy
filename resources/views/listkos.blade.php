@@ -4,7 +4,7 @@
 @section("content")
 <br><br><br><br><br><br><br>
 <div class="container mt-5">
-<?php $searchstring = Session::get('searchstring'); ?>
+
 @if ($searchstring != "")
 <div class="position-absolute start-50 translate-middle">
   <h1>Search Berdasarkan "{{$searchstring}}"</h1><br>
@@ -22,7 +22,7 @@
   </div>
 </form>
 <div id="search-result">
-    <?php $listKos = Session::get('hasilsearch'); ?>
+    <?php $listKos = $hasilsearch; ?>
     @if (count($listKos) > 0)
     @foreach ($listKos as $d)
     <div class="card mb-3">
