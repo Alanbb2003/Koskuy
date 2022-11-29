@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Verify</title>
     <style>
         body{
-            background-color: #8EC5FC;
-            background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+            background-color: #bafc8e;
+            background-image: linear-gradient(62deg, #8efc92 0%, #c3fccc 100%);
         }
     </style>
 </head>

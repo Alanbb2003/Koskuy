@@ -11,6 +11,7 @@ use App\Http\Middleware\Guest;
 use App\Models\HPembayaran;
 use App\Models\Kamar;
 use App\Models\Kos;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -61,6 +62,8 @@ Route::middleware('checklogged:pemilik')->group(function(){
         Route::get('/',[Pagecontroller::class,"homepage"]);
         Route::get("/dashboard",[PemilikController::class, "HDashboard"]);
         Route::get("/profile",[PemilikController::class, "HEditProfile"]);
+        Route::get("/profile",[PemilikController::class, "HEditProfile"]);
+        Route::post("/editprofile",[PemilikController::class, "EditProfile"]);
         Route::get("/kos", [PemilikController::class, "HKos"]);
         Route::get("/pasangiklan", [PemilikController::class, "HPasangIklan"]);
         Route::get("/pesanansaya", [PemilikController::class, "HPesananSaya"]);
@@ -178,3 +181,7 @@ Route::get('/logout', function () {
 
 Route::post("/coba",[PemilikController::class, "coba"]);
 
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

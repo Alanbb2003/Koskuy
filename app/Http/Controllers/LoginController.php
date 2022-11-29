@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -88,8 +89,12 @@ class LoginController extends Controller
 
             ]);
 
+            event(new Registered($result));
+
+
             $result->sendEmailVerificationNotification();
 
+            Auth::login($result);
             return redirect(url("/verif"))->with("email", $request->regEmail);
             // return redirect("/login");
 
