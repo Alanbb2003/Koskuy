@@ -23,7 +23,7 @@
                 </li> --}}
               </ul>
             </li>
-            <li><a href="/owner/dashboard">Akun Saya</a></li>
+            <li><a href="{{url('/owner/dashboard')}}">Akun Saya</a></li>
             <li><a href="{{url('/about')}}">About</a></li>
             <li>
               <a href="{{url('/logout')}}" class="btn btn-danger">

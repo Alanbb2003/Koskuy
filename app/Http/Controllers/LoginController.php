@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Session;
 class LoginController extends Controller
 {
     public function LoginForm(){
-        return view("Login");
+        return view("login");
     }
     public function LoginAction(Request $request){
         $request->validate([
