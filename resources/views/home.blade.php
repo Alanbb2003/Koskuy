@@ -80,7 +80,7 @@
         <div class="card-body">
           <h4 class="card-title">{{$k->kos_nama}}</h4>
           <p class="card-text">kos {{$k->kos_tipe}}, {{$k->kos_alamat}}</p>
-          <a class="btn btn-primary" href="{{url('user/detail/'.$k->id)}}">Detail</a>
+          <a class="btn btn-primary" href="{{url('user/kos/'.$k->id)}}">Detail</a>
         </div>
       </div>
     </div>

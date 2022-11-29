@@ -48,7 +48,9 @@ Route::get("/verify/{id}/{hash}", [LoginController::class, "verification"])->nam
 Route::middleware('checklogged:pelanggan')->group(function(){
     Route::prefix('/user',)->group(function(){
         Route::get('/',[UserController::class,"homepage"]);
-        Route::get('/detail/{id}',[UserController::class,"detailkos"]);
+        Route::get("/kos",[Pagecontroller::class,"listkos"])->name("listkos");
+        Route::post("/kos",[Pagecontroller::class,"searchkos"])->name("searchkos");
+        Route::get('/kos/{id}',[UserController::class,"detailkos"]);
         Route::get('/profile',[UserController::class,"profileuser"]);
         Route::get('/history',[UserController::class,"historypage"]);
         Route::get('/edit',[UserController::class,"editpage"]);

@@ -30,7 +30,7 @@
         <div class="card-body">
           <h4 class="card-title">{{$d->kos_nama}}</h4>
           <h5 class="card-title">{{$d->kos_alamat}}</h5>
-          <a href="{{ url("/kos/"
+          <a href="{{ url("user/kos/"
                 .$d->id) }}">
                 <button class="btn btn-primary">Sewa</button>
           </a>

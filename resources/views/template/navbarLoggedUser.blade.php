@@ -11,7 +11,7 @@
           <li class="has-children">
             <a href="#">Kos</a>
             <ul class="dropdown">
-              <li><a href="{{url('/kos')}}">Pesan Kos</a></li>
+              <li><a href="{{url('/user/kos')}}">Pesan Kos</a></li>
               <li><a href="{{url('/user/history')}}">History pemesanan</a></li>
             </ul>
           </li>
