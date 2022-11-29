@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
         <div class="col-md-7 col-lg-4 mb-5 mb-lg-0 wow fadeIn">
             <div class="card border-0 shadow">
-                <img src="#" alt="...">
+                <img src="{{ asset("storage/gambar/".$detail->kos_gambar) }}" alt="" style="width: 392px;height: 400px;"><br>
                 <div class="card-body p-1-9 p-xl-5">
                     <div class="mb-4">
                         <h3 class="h4 mb-0">{{$detail->kos_nama}}</h3>

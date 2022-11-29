@@ -31,7 +31,10 @@
                     <td>
 
                         <a href="{{url('/owner/editkos'.$datakos[$i]->id)}}"><button class="btn btn-danger">Edit</button></a>
-                        <a href="{{url('/owner/detailkamar'.$datakos[$i]->id)}}"><button class="btn btn-success">Detail Kamar</button></a>
+                        {{-- <a href="{{url('/owner/detailkos'.$datakos[$i]->id)}}"><button class="btn btn-success">Detail Kos</button></a> --}}
+                        <form action="{{ route('detailkos', ['id' => $datakos[$i]->id]) }}" method="get" style="margin: 0">
+                            <input type="submit" value="Detail" class="btn btn-success">
+                        </form>
                     </td>
                 </tr>
             @endfor

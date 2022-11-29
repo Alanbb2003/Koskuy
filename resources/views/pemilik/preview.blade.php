@@ -120,16 +120,20 @@
   <h3>Pemilihan Paket</h3>
   <div class="card">
     <div class="card-body">
-      Nama Paket : <b>Paket Ceria (6 Bulan)</b>  <br>
-      Harga : <b>Rp. 250.000</b><br>
+      @php
+          $kos = Session::get("dataKos");
+          $detailpaket = DB::table("paket_iklan")->where("id", "=",$kos->paket)->first();
+      @endphp
+      Nama Paket : <b>{{$detailpaket->nama_paket}}</b>  <br>
+      Harga : <b>Rp.{{$detailpaket->harga}}</b><br>
     </div>
   </div>
   <br>
   <h3>Pembayaran</h3>
   <div class="card">
     <div class="card-body">
-      Mohon melakukan transfer sejumlah <b>Rp. 250.000</b> ke rekening berikut: <br>
-      Bank : <b>Bank BRI</b>  <br>
+      Mohon melakukan transfer sejumlah <b>Rp.{{$detailpaket->harga}}</b> ke rekening berikut: <br>
+      Bank : <b>Bank BCA</b>  <br>
       No. Rek : <b>3131 3213 3457 6788</b>  <br>
       Atas Nama : <b>PT ISTTS CARI KOS</b>  <br>
         

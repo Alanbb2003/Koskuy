@@ -19,8 +19,6 @@ class PemilikController extends Controller
     public function coba(Request $request){
         dd($request->nama);
     }
-
-
     //H = Halaman
     public function HDashboard(){
         return view("pemilik.dashboard");
@@ -52,16 +50,11 @@ class PemilikController extends Controller
 
             Alert::success("Berhasil", "Profile Diubah");
             return redirect()->back();
-
         }
         else{
             Alert::error("Ada Field Kosong", "Semua Field Harus DI isi");
             return redirect()->back();
         }
-
-
-
-
         return view("pemilik.profile");
     }
     public function HKos(){
@@ -73,9 +66,6 @@ class PemilikController extends Controller
         return view("pemilik.kos",["datakos" => $data]);
     }
     public function HPasangIklan(){
-
-
-
         return view("pemilik.pasangiklan");
     }
     public function HPesananSaya(){
@@ -105,14 +95,10 @@ class PemilikController extends Controller
     }
 
     public function HUploadBukti($id){
-
         return view("pemilik.uploadbukti",["idhp"=>$id]);
-
     }
 
     public function UploadBukti(Request $req, $id){
-
-
         if ($req->validate(
             [
                 "buktitf" =>"required"
@@ -136,17 +122,14 @@ class PemilikController extends Controller
             return redirect('/owner/riwayattransaksi');
         }
 
-
     }
     public function gantipass(Request $req){
-
         $user = Session::get('user');
         // $iduser = $user->id;
         // $user = Session::get('user');
         $iduser = $user->id;
         $u = User::find($iduser);
         $passlama = $u->password;
-
         // dd(nama);
 
         // dd()
@@ -176,7 +159,6 @@ class PemilikController extends Controller
                 Alert::success('Berhasil', "Ganti");
                 return redirect()->back();
             }
-
         }
 
         return view("pemilik.gantipass");
@@ -307,5 +289,10 @@ class PemilikController extends Controller
             // return view("pemilik.preview");
             return redirect()->route('preview');
         }
+    }
+
+    public function detailKos($id){
+        $kos = Kos::find($id);
+        return view("pemilik.detailKos", compact('kos'));
     }
 }
