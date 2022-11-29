@@ -11,7 +11,7 @@
             <li class="has-children">
               <a href="properties.html">Kos</a>
               <ul class="dropdown">
-                <li><a href="/listkos">Buy Property</a></li>
+                <li><a href="/kos">Buy Property</a></li>
                 <li><a href="#">Sell Property</a></li>
                 {{-- <li class="has-children">
                   <a href="#">Dropdown</a>
