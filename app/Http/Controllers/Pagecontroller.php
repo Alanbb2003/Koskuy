@@ -31,7 +31,7 @@ class Pagecontroller extends Controller
 
         $searchstring = $request->searchinput;
 
-        return redirect(url('/listkos'))->with('searchstring',$searchstring);
+        return redirect(url("/kos"))->with('searchstring',$searchstring);
     }
     public function listkos(){
         $searchstring = Session::get('searchstring');
@@ -47,7 +47,7 @@ class Pagecontroller extends Controller
         else{
             $hasil = DB::table("kos")->paginate(5);
         }
-        return redirect(url("/kos"))->with('hasilsearch',$hasil)->with('searchstring',$searchstring);
+        return view("listkos",['hasilsearch'=>$hasil , 'searchstring'=>$searchstring]);
     }
     public function searchkos(Request $request){
         $searchstring = $request->searchinput;
@@ -58,6 +58,6 @@ class Pagecontroller extends Controller
             "LIKE", "%".$searchstring."%")->orWhere("kos_kelurahan",
             "LIKE", "%".$searchstring."%")
             ->paginate(5);
-        return redirect(url("/kos"))->with('hasilsearch',$hasil)->with('searchstring',$searchstring);
+            return redirect(url("/kos"))->with('searchstring',$searchstring);
     }
 }
