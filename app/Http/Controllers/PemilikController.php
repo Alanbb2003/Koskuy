@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\HPembayaran;
 use App\Models\Kamar;
 use App\Models\Kos;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PemilikController extends Controller
 {
@@ -22,6 +26,42 @@ class PemilikController extends Controller
         return view("pemilik.dashboard");
     }
     public function HEditProfile(){
+        $user = Session::get('user');
+        // $iduser = $user->id;
+        // $user = Session::get('user');
+        $iduser = $user->id;
+        $u = User::find($iduser);
+
+        return view("pemilik.profile" ,["CUser"=>$u]);
+    }
+    public function EditProfile(Request $req){
+        $user = Session::get('user');
+        // $iduser = $user->id;
+        // $user = Session::get('user');
+        $iduser = $user->id;
+        $u = User::find($iduser);
+
+        $fullname = $req->EPNamaLengkap;
+        $nomor = $req->EPNoTelp;
+
+        if ($fullname != "" && $nomor != "") {
+            # code...
+            $u->fullname = $fullname;
+            $u->user_telp = $nomor;
+            $u->save();
+
+            Alert::success("Berhasil", "Profile Diubah");
+            return redirect()->back();
+
+        }
+        else{
+            Alert::error("Ada Field Kosong", "Semua Field Harus DI isi");
+            return redirect()->back();
+        }
+
+
+
+
         return view("pemilik.profile");
     }
     public function HKos(){
@@ -52,7 +92,8 @@ class PemilikController extends Controller
         return view("pemilik.preview");
     }
     public function Hgantipass(){
-        return view("pemilik.gantipass");
+        $user = Auth::user();
+        return view("pemilik.gantipass", ["cuser"=>$user]);
     }
     public function HRiwayatTransaksi(){
         $user = Session::get('user');
@@ -70,6 +111,7 @@ class PemilikController extends Controller
     }
 
     public function UploadBukti(Request $req, $id){
+
 
         if ($req->validate(
             [
@@ -97,18 +139,44 @@ class PemilikController extends Controller
     }
     public function gantipass(Request $req){
 
+        $user = Session::get('user');
+        // $iduser = $user->id;
+        // $user = Session::get('user');
+        $iduser = $user->id;
+        $u = User::find($iduser);
+        $passlama = $u->password;
+
+        // dd(nama);
 
         // dd()
-        // if ($req->validate(
-        //     [
-        //         ''
-        //     ],
-        //     [
+        if ($req->validate(
+            [
+                'PLama' => 'required',
+                'PBaru' => 'required',
+                'PCBaru' => 'required|same:PBaru'
+            ],
+            [
 
-        //     ]
-        // )) {
-        //     # code...
-        // }
+            ]
+        )) {
+            # code...
+            // $reqpaslama = password_hash($req->input('PLama'), PASSWORD_DEFAULT);
+            if (!password_verify($req->PLama,$passlama)) {
+                # code...
+                Alert::warning('Error', "Password Lama tidak sesuai");
+
+                return redirect()->back();
+            }
+            else{
+
+                $u = User::find($iduser);
+                $u->password = Hash::make($req->PBaru);
+                $u->save();
+                Alert::success('Berhasil', "Ganti");
+                return redirect()->back();
+            }
+
+        }
 
         return view("pemilik.gantipass");
     }

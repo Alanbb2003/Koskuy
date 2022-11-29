@@ -12,7 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = "user";
 
@@ -28,7 +28,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'username',
         'fullname',
-        'email',
         'email',
         'password',
         'user_telp',
