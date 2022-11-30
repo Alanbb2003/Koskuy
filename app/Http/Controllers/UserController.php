@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -18,8 +20,10 @@ class UserController extends Controller
     public function detailkos($id){
         try{
             $d = DB::table("kos")->where("id","=",$id)->first();
+            $user = Session::get("user");
+            $userid = (string)$user->id;
             //select foto , d_kos, dan furnitur waktu selesai seeder
-            return view("user.detailkos",['detail'=>$d]);
+            return view("user.detailkos",['detail'=>$d, 'users'=>$userid]);
         }catch(Exception $x){
             echo $x;
         }
@@ -66,5 +70,13 @@ class UserController extends Controller
         }else{
             return redirect('/user/profile')->with("error", "Gagal ubah prodile user ");
         }
+    }
+    public function booking(Request $request){
+        $booking = new Booking();
+        $booking->id_penyewa = $request->id_penyewa;
+        $booking->id_kos = $request->id_kos;
+        $booking->status = "pending";
+        $booking->save();
+        return redirect()->back()->with("success", "Berhasil Booking!");
     }
 }

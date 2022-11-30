@@ -33,6 +33,7 @@ class LoginController extends Controller
             if($selecteduser->user_role == 1){
                 Session::put('role',"pelanggan");
                 Session::put('user',$selecteduser);
+                Session::put('id_user',$selecteduser->id);
                 return redirect('/user')->with("success","berhasil login");
             }else if($selecteduser->user_role == 2){
                 Session::put('role',"pemilik");

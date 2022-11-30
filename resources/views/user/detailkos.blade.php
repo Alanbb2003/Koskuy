@@ -3,6 +3,9 @@
 
 @section("content")
 <br><br><br><br>
+@if (Session::has('success'))
+Berhasil Booking
+@endif
 <div class="container mt-5">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ti-icons@0.1.2/css/themify-icons.css">
@@ -64,10 +67,31 @@
             </div>
         </div>
         <div class="container-sm mt-3">
-            <button class="btn btn-success">Pesan </button>
+            <form method="post"  action="{{route('booking')}}">
+                @csrf
+                <input type="hidden" name="id_kos" value="{{$detail->id}}">
+                <input type="hidden" name="id_penyewa" value="{{$users}}">
+
+                <button class="btn btn-success">Pesan </button>
+            </form>
         </div>
     </div>
 </div>
+<div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+    <div class="toast" style="position: absolute; bottom: 0; right: 0;">
+      <div class="toast-header">
+        <strong class="mr-auto">Success!</strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="toast-body">
+        @if (Session::has('success'))
+            {{Session::get("success")}}
+        @endif
+      </div>
+    </div>
+  </div>
     {{-- <p>{{$detail->kos_nama}}</p><br> --}}
     {{-- <p>{{$detail->kos_alamat}}</p><br> --}}
     {{-- <p>{{$detail->kos_tipe}}</p><br> --}}
@@ -78,7 +102,12 @@
     {{-- <p>{{$detail->kos_kecamatan}}</p><br>
     <p>{{$detail->kos_kelurahan}}</p><br>
     <p>{{$detail->kos_kodepos}}</p><br> --}}
-   
+
 </div>
-    
+
 @endsection
+<script type="text/javascript">
+    function showToast(){
+        $('.toast').toast('show');
+    }
+</script>
