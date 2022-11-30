@@ -1,6 +1,6 @@
 @extends("template.sidenavpemilik")
 
-@section("title", "Edit Profile")
+@section("title", "Kos")
 
 @section("content")
 
