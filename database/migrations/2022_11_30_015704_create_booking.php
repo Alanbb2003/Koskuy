@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('booking', function (Blueprint $table) {
             $table->id();
             $table->integer("id_penyewa");
+            $table->integer("id_owner");
             $table->integer("id_kos");
             $table->string("status");
             $table->timestamps();
