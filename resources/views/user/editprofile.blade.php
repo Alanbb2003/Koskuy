@@ -1,5 +1,5 @@
 @extends("template.master")
-@section("title", "Home")
+@section("title", "Edit Profile")
 
 @section("content")
 <br><br><br><br>
