@@ -4,29 +4,38 @@
 @section("content")
 <br><br><br><br>
 <div class="container mt-5">
-@if($havehistory =="none")
+@if($history == null)
     <div class="container">
         <h1>User belum memesan kos</h1>
     </div>
-@elseif ($havehistory == "have")
+@elseif ($history != null)
 <div class="container">
     <table class="table">
       <tr>
-          <th>No</th>
           <th>Nama Kos</th>
           <th>Tipe Kos</th>
           <th>Alamat_kos</th>
           <th>No Telephone</th>
-          <th>Tanggal Pesan</th>
+          <th>Status</th>
+          <th>Action</th>
       </tr>
       @foreach ($history as $h)
       <tr>
-          <td>{{ $h->id}}</td>
           <td>{{ $h->kos_nama}}</td>
           <td>{{ $h->kos_tipe}}</td>
           <td>{{ $h->kos_alamat}}</td>
           <td>{{ $h->kos_notelp}}</td>
-          <td>{{ $h->created_at}}</td>
+          <td>{{ $h->status}}</td>
+          @if ($h->status == "pending")
+          <form method="post"  action="{{route('cancelbook')}}">
+            @csrf
+            <input type="hidden" name="id_booking" value="{{$h->id}}">
+
+            <td><button type="submit" class="btn btn-danger">Cancel</button></td>
+        </form>
+            @else
+            <td></td>
+        @endif
           {{-- <td>
                 <a href="" class="btn btn-info">Detail</a>
           </td> --}}
@@ -36,5 +45,5 @@
   </div>
 @endif
 </div>
-    
+
 @endsection

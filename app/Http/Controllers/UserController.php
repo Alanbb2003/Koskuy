@@ -47,21 +47,21 @@ class UserController extends Controller
         // $history = DB::table("booking")->where("id_penyewa","=",$userid)->get();
         $history = DB::select("
         SELECT
-          b.id,k.kos_nama, k.kos_tipe, k.kos_alamat,k.kos_notelp,b.created_at
+          b.id,k.kos_nama, k.kos_tipe, k.kos_alamat,k.kos_notelp,b.status
         FROM
-            booking b 
+            booking b
         LEFT JOIN kos k on b.id_kos = k.id
         WHERE
          b.id_penyewa = ?
         ",[
             $userid
         ]);
-        if($history != null){
-            $havehistory ="have";
-        }else{
-            $havehistory ="none";
-        }
-        return view("user.history",['havehistory'=>$havehistory,'history'=>$history]);
+        // if($history != null){
+        //     $havehistory ="have";
+        // }else{
+        //     $havehistory ="none";
+        // }
+        return view("user.history",['history'=>$history]);
     }
     public function editpage(){
 
@@ -119,5 +119,12 @@ class UserController extends Controller
         $booking->status = "pending";
         $booking->save();
         return redirect()->back()->with("success", "Berhasil Booking!");
+    }
+    public function cancelbook(Request $request){
+        $booking = Booking::find($request->id_booking);
+        $booking->status = "canceled";
+        $booking->save();
+        Alert::success('Berhasil', "Cancel");
+        return redirect('/user/history');
     }
 }
