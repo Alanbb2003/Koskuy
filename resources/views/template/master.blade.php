@@ -28,7 +28,7 @@
         .button2{
                 border-color: blue;
         }
-    </style>
+    </style>        
 </head>
 <body>
 @php
@@ -46,7 +46,7 @@ if (session()->has("role"))
 @elseif ($msg == "pemilik")
     @include('template.navbarLoggedpemilik')
 @elseif($msg == "admin")
-    @include('template.navbarLoggedAdmin');
+    @include('template.navbarLoggedAdmin')
 @endif
 
 <div>
@@ -65,4 +65,5 @@ if (session()->has("role"))
     <script src="js/counter.js"></script>
     <script src="js/custom.js"></script> --}}
 </body>
+@yield("jscode")
 </html>
