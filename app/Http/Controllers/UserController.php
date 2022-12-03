@@ -114,6 +114,7 @@ class UserController extends Controller
     public function booking(Request $request){
         $booking = new Booking();
         $booking->id_penyewa = $request->id_penyewa;
+        $booking->id_owner = $request->id_owner;
         $booking->id_kos = $request->id_kos;
         $booking->status = "pending";
         $booking->save();

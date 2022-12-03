@@ -4,7 +4,7 @@
 @section("content")
 <br><br><br><br>
 @if (Session::has('success'))
-Berhasil Booking
+<?php echo '<script>alert("Berhasil Booking")</script>'?>
 @endif
 <div class="container mt-5">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
@@ -70,6 +70,7 @@ Berhasil Booking
             <form method="post"  action="{{route('booking')}}">
                 @csrf
                 <input type="hidden" name="id_kos" value="{{$detail->id}}">
+                <input type="hidden" name="id_owner" value="{{$detail->owner}}">
                 <input type="hidden" name="id_penyewa" value="{{$users}}">
 
                 <button class="btn btn-success">Pesan </button>
