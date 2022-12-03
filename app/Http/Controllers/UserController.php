@@ -25,8 +25,13 @@ class UserController extends Controller
             $d = DB::table("kos")->where("id","=",$id)->first();
             $user = Session::get("user");
             $userid = (string)$user->id;
+            $kamar = DB::table('kamar')->where("kos_id","=",$d->id)->get();
+            $havekamar = "none";
+            if($kamar!=null){
+                $havekamar ="have";
+            }
             //select foto , d_kos, dan furnitur waktu selesai seeder
-            return view("user.detailkos",['detail'=>$d, 'users'=>$userid]);
+            return view("user.detailkos",['detail'=>$d, 'users'=>$userid,'kamar'=>$kamar,'havekamar'=>$havekamar]);
         }catch(Exception $x){
             echo $x;
         }

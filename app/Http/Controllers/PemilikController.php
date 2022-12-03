@@ -293,6 +293,11 @@ class PemilikController extends Controller
 
     public function detailKos($id){
         $kos = Kos::find($id);
-        return view("pemilik.detailKos", compact('kos'));
+        $kamar = DB::table('kamar')->where("kos_id","=",$id)->get();
+        $havekamar = "none";
+        if($kamar!=null){
+            $havekamar ="have";
+        }
+        return view("pemilik.detailKos", compact('kos','kamar','havekamar'));
     }
 }
