@@ -54,7 +54,7 @@ class UserController extends Controller
         SELECT
           b.id,k.kos_nama, k.kos_tipe, k.kos_alamat,k.kos_notelp,b.created_at
         FROM
-            booking b 
+            booking b
         LEFT JOIN kos k on b.id_kos = k.id
         WHERE
          b.id_penyewa = ?
@@ -121,7 +121,7 @@ class UserController extends Controller
         $booking->id_penyewa = $request->id_penyewa;
         $booking->id_owner = $request->id_owner;
         $booking->id_kos = $request->id_kos;
-        $booking->status = "pending";
+        $booking->booking_status = "pending";
         $booking->save();
         return redirect()->back()->with("success", "Berhasil Booking!");
     }

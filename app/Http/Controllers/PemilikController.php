@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\HPembayaran;
 use App\Models\Kamar;
 use App\Models\Kos;
@@ -68,8 +69,29 @@ class PemilikController extends Controller
     public function HPasangIklan(){
         return view("pemilik.pasangiklan");
     }
-    public function HPesananSaya(){
-        return view("pemilik.pesanansaya");
+    public function HReqBooking(){
+
+        $user = Session::get('user');
+        // $iduser = $user->id;
+        // $user = Session::get('user');
+        $iduser = $user->id;
+        $u = User::find($iduser);
+
+        $data1 = DB::table('booking')->join("user", 'user.id','=', 'booking.id_penyewa')->join("kos",'kos.id','=','booking.id_kos')->where('booking.id_owner','=',$u->id)->get();
+
+        // $data2 = DB::table('booking')->join("user", 'user.id','=', 'booking.id_penyewa')->join("kos",'kos.id','=','id_kos')->where('kos.owner','=','booking.id_owner')->get();
+        // dd($data1);
+        return view("pemilik.pesanansaya", ["data1"=>$data1]);
+    }
+
+    public function KonfirmasiBooking($id){
+        $book = Booking::find($id);
+        // dd($book);
+        $book->booking_status = "done";
+        $book->save();
+
+        Alert::success("Berhasil", "Berhasil Konfirmasi");
+        return redirect()->back();
     }
     public function HTambahKos(){
         $paket = DB::table("paket_iklan")->get();
