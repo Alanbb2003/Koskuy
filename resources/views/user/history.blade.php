@@ -21,7 +21,7 @@
       </tr>
       @foreach ($history as $h)
       <tr>
-          <td>{{ $h->id}}</td>
+          <td>{{ $h->booking_id}}</td>
           <td>{{ $h->kos_nama}}</td>
           <td>{{ $h->kos_tipe}}</td>
           <td>{{ $h->kos_alamat}}</td>
@@ -36,5 +36,5 @@
   </div>
 @endif
 </div>
-    
+
 @endsection

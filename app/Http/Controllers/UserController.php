@@ -52,7 +52,7 @@ class UserController extends Controller
         // $history = DB::table("booking")->where("id_penyewa","=",$userid)->get();
         $history = DB::select("
         SELECT
-          b.id,k.kos_nama, k.kos_tipe, k.kos_alamat,k.kos_notelp,b.created_at
+          b.booking_id,k.kos_nama, k.kos_tipe, k.kos_alamat,k.kos_notelp,b.created_at
         FROM
             booking b
         LEFT JOIN kos k on b.id_kos = k.id
@@ -123,6 +123,7 @@ class UserController extends Controller
         $booking->id_kos = $request->id_kos;
         $booking->booking_status = "pending";
         $booking->save();
-        return redirect()->back()->with("success", "Berhasil Booking!");
+        Alert::success("Berhasil", "Berhasil Booking");
+        return redirect()->back();
     }
 }
