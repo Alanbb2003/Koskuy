@@ -16,7 +16,7 @@ class AdminController extends Controller
         // SELECT
         //  k.kos_nama,count(b.id_kos) as total
         // FROM
-        //     booking b 
+        //     booking b
         // LEFT JOIN kos k on b.id_kos = k.id
         // Group by
         //  b.id,k.kos_nama
@@ -75,6 +75,13 @@ class AdminController extends Controller
 
         return redirect('/admin/listpesanan');
 
+    }
+
+
+    public function HLaporanPendapatan(){
+
+        
+        return view("admin.laporanpendapatan");
     }
 
 
