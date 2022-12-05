@@ -31,6 +31,8 @@
     </style>
 </head>
 <body>
+
+    @include('sweetalert::alert')
 @php
 $msg = "";
 if (session()->has("role"))
@@ -46,7 +48,7 @@ if (session()->has("role"))
 @elseif ($msg == "pemilik")
     @include('template.navbarLoggedpemilik')
 @elseif($msg == "admin")
-    @include('template.navbarLoggedAdmin');
+    @include('template.navbarLoggedAdmin')
 @endif
 
 <div>
@@ -65,4 +67,5 @@ if (session()->has("role"))
     <script src="js/counter.js"></script>
     <script src="js/custom.js"></script> --}}
 </body>
+@yield("jscode")
 </html>

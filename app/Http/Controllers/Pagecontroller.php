@@ -12,7 +12,7 @@ class Pagecontroller extends Controller
 {
     public function homepage(){
 
-        $k = DB::table("kos")->get();
+        $k = DB::table("kos")->where("status",'=',"aktif")->get();
 
         return view("home",['kos'=>$k]);
     }

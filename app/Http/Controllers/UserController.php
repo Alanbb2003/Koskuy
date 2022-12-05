@@ -25,8 +25,13 @@ class UserController extends Controller
             $d = DB::table("kos")->where("id","=",$id)->first();
             $user = Session::get("user");
             $userid = (string)$user->id;
+            $kamar = DB::table('kamar')->where("kos_id","=",$d->id)->get();
+            $havekamar = "none";
+            if($kamar!=null){
+                $havekamar ="have";
+            }
             //select foto , d_kos, dan furnitur waktu selesai seeder
-            return view("user.detailkos",['detail'=>$d, 'users'=>$userid]);
+            return view("user.detailkos",['detail'=>$d, 'users'=>$userid,'kamar'=>$kamar,'havekamar'=>$havekamar]);
         }catch(Exception $x){
             echo $x;
         }
@@ -47,7 +52,11 @@ class UserController extends Controller
         // $history = DB::table("booking")->where("id_penyewa","=",$userid)->get();
         $history = DB::select("
         SELECT
+<<<<<<< HEAD
           b.id,k.kos_nama, k.kos_tipe, k.kos_alamat,k.kos_notelp,b.status
+=======
+          b.booking_id,k.kos_nama, k.kos_tipe, k.kos_alamat,k.kos_notelp,b.created_at
+>>>>>>> 044f667b69eb4b266a0f53d3a188a592be41ff53
         FROM
             booking b
         LEFT JOIN kos k on b.id_kos = k.id
@@ -116,9 +125,10 @@ class UserController extends Controller
         $booking->id_penyewa = $request->id_penyewa;
         $booking->id_owner = $request->id_owner;
         $booking->id_kos = $request->id_kos;
-        $booking->status = "pending";
+        $booking->booking_status = "pending";
         $booking->save();
-        return redirect()->back()->with("success", "Berhasil Booking!");
+        Alert::success("Berhasil", "Berhasil Booking");
+        return redirect()->back();
     }
     public function cancelbook(Request $request){
         $booking = Booking::find($request->id_booking);

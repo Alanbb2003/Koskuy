@@ -21,6 +21,10 @@
       </tr>
       @foreach ($history as $h)
       <tr>
+<<<<<<< HEAD
+=======
+          <td>{{ $h->booking_id}}</td>
+>>>>>>> 044f667b69eb4b266a0f53d3a188a592be41ff53
           <td>{{ $h->kos_nama}}</td>
           <td>{{ $h->kos_tipe}}</td>
           <td>{{ $h->kos_alamat}}</td>

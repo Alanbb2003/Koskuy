@@ -77,6 +77,39 @@
             </form>
         </div>
     </div>
+    <br>
+        @if($havekamar =="none")
+        <div class="container">
+            <h1>Pemilik belum mengisi kamar</h1>
+        </div>
+        @elseif ($havekamar == "have")
+        <div class="container">
+            <h3>Kamar</h3>
+            <table class="table table-striped">
+            <tr>
+                <th>Jenis Kamar</th>
+                <th>harga kamar</th>
+                <th>jumlah kamar</th>
+                <th>luas kamar</th>
+                <th>status kamar</th>
+                <th>Gambar kamar</th>
+            </tr>
+            @foreach ($kamar as $h)
+            <tr>
+                <td>{{ $h->jenis_kamar}}</td>
+                <td>{{ $h->harga_kamar}}</td>
+                <td>{{ $h->jumlah_kamar}}</td>
+                <td>{{ $h->luas_kamar}}</td>
+                <td>{{ $h->status_kamar}}</td>
+                <td><img src="{{ asset("storage/gambar/".$h->gambar_kamar) }}" class="img-fluid"></td>
+                {{-- <td>
+                        <a href="" class="btn btn-info">Detail</a>
+                </td> --}}
+            </tr>
+            @endforeach
+        </table>
+        </div>
+        @endif
 </div>
 <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
     <div class="toast" style="position: absolute; bottom: 0; right: 0;">

@@ -69,7 +69,8 @@ Route::middleware('checklogged:pemilik')->group(function(){
         Route::post("/editprofile",[PemilikController::class, "EditProfile"]);
         Route::get("/kos", [PemilikController::class, "HKos"]);
         Route::get("/pasangiklan", [PemilikController::class, "HPasangIklan"]);
-        Route::get("/pesanansaya", [PemilikController::class, "HPesananSaya"]);
+        Route::get("/pesanansaya", [PemilikController::class, "HReqBooking"]);
+        Route::get("/konfirmbooking/{id}",[PemilikController::class, "KonfirmasiBooking"]);
         Route::get("/Hgantipass", [PemilikController::class, "Hgantipass"]);
         Route::post("/gantipass", [PemilikController::class, "gantipass"]);
         // Route::get("/HTambahKos", [PemilikController::class, "HTambahKos"]);
@@ -165,6 +166,9 @@ Route::middleware('checklogged:admin')->group(function(){
         Route::get('/listpesanan',[AdminController::class, "HListPesanan"]);
 
         Route::get('/konfirmasipesanan/{id}',[AdminController::class, "KonfirmasiPesanan"]);
+
+        Route::get('/laporanpendapatan',[AdminController::class,"HLaporanPendapatan"]);
+
         // Route::get('/home', function () {
         //     if (!Session::has('lognamaL')) {
         //         return redirect()->route('login');

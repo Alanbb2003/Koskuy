@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('booking', function (Blueprint $table) {
-            $table->id();
+            $table->increments("booking_id");
             $table->integer("id_penyewa");
             $table->integer("id_owner");
             $table->integer("id_kos");
-            $table->string("status");
+            $table->string("booking_status");
             $table->timestamps();
         });
     }
