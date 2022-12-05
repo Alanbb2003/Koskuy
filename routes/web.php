@@ -54,6 +54,7 @@ Route::middleware('checklogged:pelanggan')->group(function(){
         Route::post('/kos/booking',[UserController::class,"booking"])->name("booking");
         Route::get('/profile',[UserController::class,"profileuser"]);
         Route::get('/history',[UserController::class,"historypage"]);
+        Route::post('/history',[UserController::class,"cancelbook"])->name("cancelbook");
         Route::get('/edit',[UserController::class,"editpage"]);
         Route::post('/edit',[UserController::class,"editfunc"])->name('saveedit');
     });
