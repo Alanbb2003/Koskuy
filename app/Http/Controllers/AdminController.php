@@ -109,5 +109,20 @@ class AdminController extends Controller
         return view("admin.laporanpendapatan",["data"=>$data,"total"=>$total]);
     }
 
+    public function HChartPaket(){
+
+        // $data = DB::select("SELECT concat('paket ' , paket_id) as paket, count(*) as jumlah from h_pembayaran group by paket_id ");
+        $data = DB::select("SELECT paket_id as paket, count(*) as jumlah from h_pembayaran group by paket_id ");
+        // dd($data);
+
+
+        return view("admin.laporanpaket",["data"=>$data]);
+        // foreach($umur as $as => $um){
+        //     $isi = ["label"=>"$um->umur", "y"=>"$um->jumlah"];
+        //     array_push($dataPoints, $isi);
+        // }
+
+    }
+
 
 }
