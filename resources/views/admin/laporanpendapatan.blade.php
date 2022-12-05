@@ -18,7 +18,7 @@
 </div>
 <center>
 <div class="form-control" style="background-color: cornflowerblue; padding: 10px; width: 85%; height: 150px;" >
-    <form action="" method="POST"  >
+    <form action="{{url('/admin/Flaporanpendapatan')}}" method="GET"  >
         <div class="d-flex">
             <div class="" style="width: 500px;height: 90px;">
                 <label class="label">
@@ -38,7 +38,7 @@
             </div>
             &nbsp;
             <br>
-            <button class="btn btn-secondary" style="height: 50px; margin-top: 15px; ">Search!</button>
+            <button class="btn btn-secondary" style="height: 50px; margin-top: 15px; ">Search</button>
         </div>
     </form>
     <div class="d-flex">
@@ -54,54 +54,39 @@
         <table class="table w-full" style="border-radius: 50%">
             <tr class="table-primary">
                 <th scope="col">No</th>
-                <th scope="col">Waktu Transaksi</th>
+                <th scope="col">Tanggal Transaksi</th>
                 <th scope="col">Tipe Paket</th>
                 <th scope="col">Pendapatan</th>
-                
+
             </tr>
-            {{-- @for ($i = 0; $i < count($data);$i++)
+            @if(count($data) > 0)
+                @for($i=0; $i < count($data); $i++)
+                    <tr>
+                        <th scope="row">{{$i+1}}</th>
+                        <td>{{$data[$i]->tgl_trans}}</td>
+                        <td>{{$data[$i]->nama_paket}}</td>
+                        <td>{{number_format($data[$i]->harga)}}</td>
+                    </tr>
+                @endfor
+                <tr>
+                    <td colspan="4"><b>Total = IDR {{number_format($total)}} </b> </td>
+                </tr>
+            @else
 
             <tr>
-                <td>{{$i+1}}</td>
-                <td>{{$data[$i]->fullname}}</td>
-                <td>{{$data[$i]->kos_nama}}</td>
-                <td>{{$data[$i]->nama_paket}}</td>
-                <td>{{$data[$i]->harga}}</td>
-                <td>{{$h[$i]->created_at}}</td>
-                <td>
-                    @if ($h[$i]->status == 0)
-                    Menunggu Konfirmasi
-                    @elseif ($h[$i]->status == 1)
-                    Menunggu Konfirmasi
-                    @else
-                    Sudah Bayar
-                    @endif
-                </td>
-                <td>
-                    @if ($h[$i]->bukti != null)
-
-                    <img src="{{asset('/storage/bukti/'.$h[$i]->bukti)}}" style="width: 100px; height:100px ;">
-                    @else
-                        Belum Ada
-
-                    @endif
-                </td>
-                <td>
-                    @if ($h[$i]->status == 0)
-                    <a href="{{url('/admin/konfirmasipesanan/'.$h[$i]->id)}}"><button class="btn btn-danger">Konfirmasi</button></a>
-                    @elseif ($h[$i]->status == 1)
-                    <a href="{{url('/admin/konfirmasipesanan/'.$h[$i]->id)}}"><button class="btn btn-danger">Konfirmasi</button></a>
-
-                    @else
-                    <a href="{{url('#')}}"><button class="btn btn-success">Done</button></a>
-                @endif
-                </td>
+                <td colspan=6><center>Empty</center></td>
             </tr>
-
-            @endfor --}}
+            @endif
         </table>
     </div>
 </center>
+
+<br><br>
+
+
+
+
+
 
 
 

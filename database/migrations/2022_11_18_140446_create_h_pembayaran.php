@@ -31,6 +31,7 @@ return new class extends Migration
             $table->integer("harga");
             $table->string("bukti")->nullable();
             $table->integer("status");
+            $table->date("tgl_trans");
             $table->timestamps();
         });
     }
