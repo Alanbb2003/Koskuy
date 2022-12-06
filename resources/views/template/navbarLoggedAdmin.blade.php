@@ -32,7 +32,7 @@
             <ul class="dropdown " >
               <li><a href="{{url('/admin/laporanpendapatan')}}">Pendapatan</a></li>
               <li><a href="{{url('/admin/chartpaket')}}">Chart Paket</a></li>
-              <li><a href="{{url('/admin/listpesanan')}}">Pesanan</a></li>
+              <li><a href="{{url('/admin/jumlahkos')}}">Jumlah Kos Pemilik</a></li>
             </ul>
           </li>
 

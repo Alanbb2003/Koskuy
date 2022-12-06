@@ -71,6 +71,7 @@
                 <tr>
                     <td colspan="4"><b>Total = IDR {{number_format($total)}} </b> </td>
                 </tr>
+
             @else
 
             <tr>
@@ -78,6 +79,8 @@
             </tr>
             @endif
         </table>
+
+
     </div>
 </center>
 

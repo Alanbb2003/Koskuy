@@ -17,11 +17,25 @@
 
             <option value="{{$paket[$i]->id}}">{{$paket[$i]->nama_paket." - ".$paket[$i]->harga." - ".$paket[$i]->waktu }}</option>
 
-
-
         @endfor
     </select>
     <br><br>
+    @php
+                // \Indonesia::allProvinces()
+        // \Indonesia::paginateProvinces($numRows = 15)
+        // \Indonesia::allCities()
+        // \Indonesia::paginateCities($numRows = 15)
+        // \Indonesia::allDistricts()
+        // \Indonesia::paginateDistricts($numRows = 15)
+        // \Indonesia::allVillages()
+        // \Indonesia::paginateVillages($numRows = 15)
+        $provinces = \Indonesia::allProvinces();
+        $cities = \Indonesia::allCities();
+        
+        $districts = \Indonesia::allDistricts();
+        $villages = \Indonesia::allVillages();
+        // dd($location);
+    @endphp
     Nama Kos
     <input type="text" class="form-control" style="width: 400px" name="nama">
     <span style="color: red;">{{ $errors->first('nama') }}</span>
@@ -50,18 +64,36 @@
     <input type="text" class="form-control" name="notelp" style="width: 400px">
     <span style="color: red;">{{ $errors->first('notelp') }}</span>
     <br>
-    Provinsi
-    <input type="text" class="form-control" name="provinsi" style="width: 400px">
+    Provinsi <br>
+    <select name="provinsi" id="" class="form-select theSelect" style="width: 400px">
+        @for ($i = 0; $i < count($provinces);$i++)
+
+            <option value="{{$provinces[$i]->name}}">{{$provinces[$i]->code." - ".$provinces[$i]->name}}</option>
+
+        @endfor
+    </select>
     <span style="color: red;">{{ $errors->first('provinsi') }}</span>
-    <br>
-    Kota
-    <input type="text" class="form-control" name="kota" style="width: 400px">
+    <br><br>
+    Kota <br>
+    <select name="kota" id="" class="form-select theSelect" style="width: 400px">
+        @for ($i = 0; $i < count($cities);$i++)
+
+            <option value="{{$cities[$i]->name}}">{{$cities[$i]->code." - ".$cities[$i]->name}}</option>
+
+        @endfor
+    </select>
     <span style="color: red;">{{ $errors->first('kota') }}</span>
-    <br>
-    Kecamatan
-    <input type="text" class="form-control" name="kecamatan" style="width: 400px">
+    <br> <br>
+    Kecamatan <br>
+    <select name="kecamatan" id="" class="form-select theSelect" style="width: 400px">
+        @for ($i = 0; $i < count($districts);$i++)
+
+            <option value="{{$districts[$i]->name}}">{{$districts[$i]->code." - ".$districts[$i]->name}}</option>
+
+        @endfor
+    </select>
     <span style="color: red;">{{ $errors->first('kecamatan') }}</span>
-    <br>
+    <br><br>
     Kelurahan
     <input type="text" class="form-control" name="kelurahan" style="width: 400px">
     <span style="color: red;">{{ $errors->first('kelurahan') }}</span>
@@ -78,8 +110,10 @@
     <button type="submit">Tambah</button>
 
 
-
-
 </form>
+
+<script>
+    $(".theSelect").select2();
+</script>
 
 @endsection

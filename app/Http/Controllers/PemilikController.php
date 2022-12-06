@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Laravolt\Indonesia\IndonesiaService;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PemilikController extends Controller
@@ -67,7 +68,8 @@ class PemilikController extends Controller
         return view("pemilik.kos",["datakos" => $data]);
     }
     public function HPasangIklan(){
-        return view("pemilik.pasangiklan");
+        $paket = DB::table("paket_iklan")->get();
+        return view("pemilik.tambahkos",["paket"=>$paket]);
     }
     public function HReqBooking(){
 
@@ -93,10 +95,6 @@ class PemilikController extends Controller
         Alert::success("Berhasil", "Berhasil Konfirmasi");
         return redirect()->back();
     }
-    public function HTambahKos(){
-        $paket = DB::table("paket_iklan")->get();
-        return view("pemilik.tambahkos",["paket"=>$paket]);
-    }
     public function tambahkamar(){
         return view("pemilik.tambahkamar");
     }
@@ -110,8 +108,8 @@ class PemilikController extends Controller
     public function HRiwayatTransaksi(){
         $user = Session::get('user');
         $iduser = $user->id;
-        $h = DB::table("h_pembayaran")->where("user_id",'=',$iduser)->get();
-        $datatrans = DB::table("h_pembayaran")->join("kos","kos.id",'=','h_pembayaran.kos_id')->join("paket_iklan",'paket_iklan.id','=','h_pembayaran.paket_id')->where("user_id",'=',$iduser)->get();
+        $h = DB::table("h_pembayaran")->where("user_id",'=',$iduser)->orderBy("tgl_trans","desc")->get();
+        $datatrans = DB::table("h_pembayaran")->join("kos","kos.id",'=','h_pembayaran.kos_id')->join("paket_iklan",'paket_iklan.id','=','h_pembayaran.paket_id')->where("user_id",'=',$iduser)->orderBy("h_pembayaran.tgl_trans",'desc')->get();
 
         return view("pemilik.riwayattransaksi", ["datatrans"=> $datatrans, "h"=>$h]);
     }

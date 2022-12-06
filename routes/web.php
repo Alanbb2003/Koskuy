@@ -74,7 +74,7 @@ Route::middleware('checklogged:pemilik')->group(function(){
         Route::get("/Hgantipass", [PemilikController::class, "Hgantipass"]);
         Route::post("/gantipass", [PemilikController::class, "gantipass"]);
         // Route::get("/HTambahKos", [PemilikController::class, "HTambahKos"]);
-        Route::get("/pasangiklan",[PemilikController::class, "HTambahKos"]);
+        // Route::get("/pasangiklan",[PemilikController::class, "HTambahKos"]);
         Route::get("/riwayattransaksi",[PemilikController::class, "HRiwayatTransaksi"]);
         Route::get("/Huploadbukti/{id}",[PemilikController::class, "HUploadBukti"]);
         Route::post("/uploadbukti/{id}",[PemilikController::class, "UploadBukti"]);
@@ -146,10 +146,6 @@ Route::middleware('checklogged:pemilik')->group(function(){
             $hpembayaran->tgl_trans = now();
             $hpembayaran->save();
 
-
-
-
-
             return redirect('/')->with("success","Berhasil melakukan transaksi!");
         })->name('addKosToDB');
     });
@@ -171,6 +167,7 @@ Route::middleware('checklogged:admin')->group(function(){
         Route::get('/laporanpendapatan',[AdminController::class,"HLaporanPendapatan"]);
         Route::get("/Flaporanpendapatan",[AdminController::class, "FLaporanPendapatan"]);
         Route::get("/chartpaket",[AdminController::class, "HChartPaket"]);
+        Route::get("/jumlahkos",[AdminController::class, "HLJumlahKos"]);
         // Route::get('/home', function () {
         //     if (!Session::has('lognamaL')) {
         //         return redirect()->route('login');
