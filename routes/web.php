@@ -146,10 +146,6 @@ Route::middleware('checklogged:pemilik')->group(function(){
             $hpembayaran->tgl_trans = now();
             $hpembayaran->save();
 
-
-
-
-
             return redirect('/')->with("success","Berhasil melakukan transaksi!");
         })->name('addKosToDB');
     });
