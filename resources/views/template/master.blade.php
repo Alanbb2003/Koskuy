@@ -28,9 +28,13 @@
         .button2{
                 border-color: blue;
         }
-    </style>        
+    </style>
+
+    @yield("script")
 </head>
 <body>
+
+    @include('sweetalert::alert')
 @php
 $msg = "";
 if (session()->has("role"))

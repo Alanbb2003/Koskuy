@@ -54,6 +54,7 @@ Route::middleware('checklogged:pelanggan')->group(function(){
         Route::post('/kos/booking',[UserController::class,"booking"])->name("booking");
         Route::get('/profile',[UserController::class,"profileuser"]);
         Route::get('/history',[UserController::class,"historypage"]);
+        Route::post('/history',[UserController::class,"cancelbook"])->name("cancelbook");
         Route::get('/edit',[UserController::class,"editpage"]);
         Route::post('/edit',[UserController::class,"editfunc"])->name('saveedit');
     });
@@ -68,7 +69,8 @@ Route::middleware('checklogged:pemilik')->group(function(){
         Route::post("/editprofile",[PemilikController::class, "EditProfile"]);
         Route::get("/kos", [PemilikController::class, "HKos"]);
         Route::get("/pasangiklan", [PemilikController::class, "HPasangIklan"]);
-        Route::get("/pesanansaya", [PemilikController::class, "HPesananSaya"]);
+        Route::get("/pesanansaya", [PemilikController::class, "HReqBooking"]);
+        Route::get("/konfirmbooking/{id}",[PemilikController::class, "KonfirmasiBooking"]);
         Route::get("/Hgantipass", [PemilikController::class, "Hgantipass"]);
         Route::post("/gantipass", [PemilikController::class, "gantipass"]);
         // Route::get("/HTambahKos", [PemilikController::class, "HTambahKos"]);
@@ -141,6 +143,7 @@ Route::middleware('checklogged:pemilik')->group(function(){
             $hpembayaran->kos_id = $item->id;
             $hpembayaran->harga = $detailpaket->harga;
             $hpembayaran->status = 0;
+            $hpembayaran->tgl_trans = now();
             $hpembayaran->save();
 
 
@@ -164,6 +167,10 @@ Route::middleware('checklogged:admin')->group(function(){
         Route::get('/listpesanan',[AdminController::class, "HListPesanan"]);
 
         Route::get('/konfirmasipesanan/{id}',[AdminController::class, "KonfirmasiPesanan"]);
+
+        Route::get('/laporanpendapatan',[AdminController::class,"HLaporanPendapatan"]);
+        Route::get("/Flaporanpendapatan",[AdminController::class, "FLaporanPendapatan"]);
+        Route::get("/chartpaket",[AdminController::class, "HChartPaket"]);
         // Route::get('/home', function () {
         //     if (!Session::has('lognamaL')) {
         //         return redirect()->route('login');
@@ -190,3 +197,7 @@ Route::post("/coba",[PemilikController::class, "coba"]);
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get("/anjay", function(){
+
+});
