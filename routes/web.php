@@ -171,6 +171,7 @@ Route::middleware('checklogged:admin')->group(function(){
         Route::get('/laporanpendapatan',[AdminController::class,"HLaporanPendapatan"]);
         Route::get("/Flaporanpendapatan",[AdminController::class, "FLaporanPendapatan"]);
         Route::get("/chartpaket",[AdminController::class, "HChartPaket"]);
+        Route::get("/jumlahkos",[AdminController::class, "HLJumlahKos"]);
         // Route::get('/home', function () {
         //     if (!Session::has('lognamaL')) {
         //         return redirect()->route('login');
