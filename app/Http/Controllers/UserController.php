@@ -77,14 +77,29 @@ class UserController extends Controller
             $iduser = $user->id;
             $u = User::find($iduser);
             $passlama = $u->password;
-        if($request->validate([
-            "edtusername"=>"required",
-            "edtfullname"=>"required",
-            "edtnumber"=>"required|numeric",
-            "edtoldpass"=>'required',
-            "edtnewpass"=>'required',
-            "edtconpass"=>'required|same:edtnewpass'
-        ])
+            $rules = [
+                "edtusername"=>"required",
+                "edtfullname"=>"required",
+                "edtnumber"=>"required|numeric",
+                "edtoldpass"=>'required',
+                "edtnewpass"=>'required',
+                "edtconpass"=>'required|same:edtnewpass'
+            ];
+            $messages = [
+                "required" => "please fill out this field",
+                "numeric" => "must be numbers",
+                "same"=>"Must be the same as new password"
+            ];
+        if(
+            // $request->validate([
+            // "edtusername"=>"required",
+            // "edtfullname"=>"required",
+            // "edtnumber"=>"required|numeric",
+            // "edtoldpass"=>'required',
+            // "edtnewpass"=>'required',
+            // "edtconpass"=>'required|same:edtnewpass'
+            // ])
+            $request->validate($rules, $messages)
         ){
             if (!password_verify($request->edtoldpass,$passlama)) {
                 # code...
@@ -95,6 +110,7 @@ class UserController extends Controller
             else{
 
                 $u = User::find($iduser);
+                Session::put("user",$u);
                 $u->username = $request->edtusername;
                 $u->fullname = $request->edtfullname;
                 $u->user_telp = $request->edtnumber;

@@ -2,8 +2,17 @@
   <div class="container">
     <div class="menu-bg-wrap">
       <div class="site-navigation">
-        <a href="index.html" class="logo m-0 float-start">Koskuy</a>
-
+        <a href="#" class="logo m-0 float-start" >Koskuy</a>
+        @php
+        $user = "";
+        if (session()->has("user"))
+        {
+            $user= session()->get("user");
+        }
+        @endphp
+        @if ($user != "")
+            <a href="#" class="logo mx-5 float-start">welcome, {{$user->username}}</a>
+        @endif
         <ul
           class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
         >

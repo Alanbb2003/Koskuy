@@ -8,11 +8,11 @@
           class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
         >
           <li class="active"><a href="{{url('/')}}">Home</a></li>
-          <li class="has-children">
+          {{-- <li class="has-children">
             <a href="properties.html">Kos</a>
-            <ul class="dropdown">
-              <li><a href="/listkos">Buy Property</a></li>
-              <li><a href="#">Sell Property</a></li>
+            <ul class="dropdown"> --}}
+              <li><a href="/kos">Kos</a></li>
+              {{-- <li><a href="#">Sell Property</a></li> --}}
               {{-- <li class="has-children">
                 <a href="#">Dropdown</a>
                 <ul class="dropdown">
@@ -21,9 +21,9 @@
                   <li><a href="#">Sub Menu Three</a></li>
                 </ul>
               </li> --}}
-            </ul>
-          </li>
-          <li><a href="services.html">Services</a></li>
+            {{-- </ul> --}}
+          {{-- </li> --}}
+          {{-- <li><a href="services.html">Services</a></li> --}}
           <li><a href="{{url('/about')}}">About</a></li>
           <li>
             <a href="{{url('/login')}}">

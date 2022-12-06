@@ -39,7 +39,6 @@
 $msg = "";
 if (session()->has("role"))
 {
-
     $msg = session()->get("role");
 }
 @endphp
