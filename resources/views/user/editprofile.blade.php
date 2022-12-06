@@ -18,17 +18,29 @@
                             <h4 class="text-right">Profile Settings</h4>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-md-12"><label class="labels">Username</label><input type="text" class="form-control" placeholder="username" name="edtusername"></div>
-                            <div class="col-md-12"><label class="labels">Full Name</label><input type="text" class="form-control" placeholder="Full name" name="edtfullname"></div>
+                            <div class="col-md-12"><label class="labels">Username</label><input type="text" class="form-control" placeholder="username" name="edtusername" value="{{ old('edtusername') }}">
+                             <span style="color: red;">{{ $errors->first('edtusername') }}</span>
+                            </div>
+                            <div class="col-md-12"><label class="labels">Full Name</label><input type="text" class="form-control" placeholder="Full name" name="edtfullname" value="{{ old('edtfullname') }}">
+                                <span style="color: red;">{{ $errors->first('edtfullname') }}</span>
+                            </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" name ="edtnumber"></div>   
+                            <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" name ="edtnumber" value="{{ old('edtnumber') }}">
+                                <span style="color: red;">{{ $errors->first('edtnumber') }}</span>
+                            </div>   
                         </div>
                         <div class="row mt-3">
                             <h4>password</h4>
-                            <div class="col-md-12"><label class="labels">Old password</label><input type="text" class="form-control" placeholder="Old password" name="edtoldpass"></div>
-                            <div class="col-md-6"><label class="labels">New Password</label><input type="text" class="form-control" value="" placeholder="New Password" name="edtnewpass"></div>
-                            <div class="col-md-6"><label class="labels">Confirmation</label><input type="text" class="form-control" value="" placeholder="Confirmation" name="edtconpass"></div>
+                            <div class="col-md-12"><label class="labels">Old password</label><input type="password" class="form-control" placeholder="Old password" name="edtoldpass">
+                                <span style="color: red;">{{ $errors->first('edtoldpass') }}</span>
+                            </div>
+                            <div class="col-md-6"><label class="labels">New Password</label><input type="password" class="form-control" value="" placeholder="New Password" name="edtnewpass">
+                                <span style="color: red;">{{ $errors->first('edtnewpass') }}</span>
+                            </div>
+                            <div class="col-md-6"><label class="labels">Confirmation</label><input type="password" class="form-control" value="" placeholder="Confirmation" name="edtconpass">
+                                <span style="color: red;">{{ $errors->first('edtconpass') }}</span>
+                            </div>
                         </div>
                         <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
                     </div>
