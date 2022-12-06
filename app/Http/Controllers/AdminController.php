@@ -99,7 +99,9 @@ class AdminController extends Controller
 
         $data = DB::table("h_pembayaran")->join('paket_iklan','paket_iklan.id','=','h_pembayaran.paket_id')->where("h_pembayaran.status",'=',2)->where("h_pembayaran.tgl_trans",'>=',$tgl1)->where("h_pembayaran.tgl_trans",'<=',$tgl2)->get();
         // $data2 = DB::table("h_pembayaran")->where("h_pembayaran.status",'=',2)->where("tgl_trans",'>=',$tgl1)->where("tgl_trans",'<=',$tgl2)->get();
-        // dd($data);
+
+        // dd($data->nextPageUrl());
+
         $total = 0;
         foreach ($data as $key => $value) {
             # code...
@@ -122,6 +124,15 @@ class AdminController extends Controller
         //     array_push($dataPoints, $isi);
         // }
 
+    }
+
+    public function HLJumlahKos(){
+
+        $data = DB::select("SELECT *, count(*) as jumlah from kos k join user u on k.owner=u.id group by k.owner");
+
+        // dd($data);
+
+        return view("admin.laporanjumlahkos",["data"=>$data]);
     }
 
 

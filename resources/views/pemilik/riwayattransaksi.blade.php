@@ -41,7 +41,7 @@
                     <td>{{$h[$i]->created_at}}</td>
                     <td>
                         @if ($h[$i]->status == 0)
-                            <a href="{{url('/owner/Huploadbukti/'.$datatrans[$i]->id)}}"><button class="btn btn-danger">Upload Bukti Pembayaran</button></a>
+                            <a href="{{url('/owner/Huploadbukti/'.$h[$i]->id)}}"><button class="btn btn-danger">Upload Bukti Pembayaran</button></a>
                         @elseif ($h[$i]->status == 1)
 
                             <a href="#"><button class="btn btn-danger">Menunggu Konfirmasi</button></a>

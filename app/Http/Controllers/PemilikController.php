@@ -108,8 +108,8 @@ class PemilikController extends Controller
     public function HRiwayatTransaksi(){
         $user = Session::get('user');
         $iduser = $user->id;
-        $h = DB::table("h_pembayaran")->where("user_id",'=',$iduser)->get();
-        $datatrans = DB::table("h_pembayaran")->join("kos","kos.id",'=','h_pembayaran.kos_id')->join("paket_iklan",'paket_iklan.id','=','h_pembayaran.paket_id')->where("user_id",'=',$iduser)->get();
+        $h = DB::table("h_pembayaran")->where("user_id",'=',$iduser)->orderBy("tgl_trans","desc")->get();
+        $datatrans = DB::table("h_pembayaran")->join("kos","kos.id",'=','h_pembayaran.kos_id')->join("paket_iklan",'paket_iklan.id','=','h_pembayaran.paket_id')->where("user_id",'=',$iduser)->orderBy("h_pembayaran.tgl_trans",'desc')->get();
 
         return view("pemilik.riwayattransaksi", ["datatrans"=> $datatrans, "h"=>$h]);
     }
