@@ -11,16 +11,29 @@
 </div>
 @endif
 <form method="post"  action="{{route('searchkos')}}">
-@csrf
-<div class="input-group">
-    <div class="form-outline">
-      <input  type="text" name="searchinput" placeholder="Masukkan lokasi. contoh : Surabaya"  class="form-control" />
-    </div>
-    <button id="search-button" type="submit" class="btn btn-primary">
-      Search
-    </button>
+  @csrf
+  <div class="input-group mb-3">
+
+    <h5>jenis Kos : </h5>
+      <select class="custom-select" id="inputGroupSelect01" name="jeniskos">
+        <option selected  value="Semua">Semua</option>
+        <option value="Putra">Putra</option>
+        <option value="Putri">Putri</option>
+        <option value="Campur">Campur</option>
+      </select>
+
+      {{-- <h5>Harga : </h5>
+      <input  type="text" name="hawal" class="form-control"/> - <input  type="text" name="hakhir" class="form-control"/> --}}
+
+      <div class="form-outline">
+        <input  type="text" name="searchinput" placeholder="Masukkan lokasi. contoh : Surabaya"  class="form-control"  />
+      </div>
+      <button id="search-button" type="submit" class="btn btn-primary">
+        Search
+      </button>      
   </div>
 </form>
+
 <div id="search-result">
     <?php $listKos = $hasilsearch; ?>
     @if (count($listKos) > 0)

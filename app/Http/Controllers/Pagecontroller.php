@@ -33,31 +33,67 @@ class Pagecontroller extends Controller
 
         return redirect(url("/kos"))->with('searchstring',$searchstring);
     }
-    public function listkos(){
-        $searchstring = Session::get('searchstring');
-        if($searchstring){
-        $hasil = Kos::where("kos_alamat",
-            "LIKE", "%".$searchstring."%")->orWhere("kos_nama",
-            "LIKE", "%".$searchstring."%")->orWhere("kos_kota",
-            "LIKE", "%".$searchstring."%")->orWhere("kos_kecamatan",
-            "LIKE", "%".$searchstring."%")->orWhere("kos_kelurahan",
-            "LIKE", "%".$searchstring."%")
-            ->paginate(5);
+
+    public function listkos(Request $request){
+        $searchstring = Session::get('hasil');
+        $searchjenis = $request->jeniskos;
+        $tablejenis = DB::table("kos")->where("kos_tipe",'=', $searchjenis)->get();
+        
+        if($searchjenis == "Semua"){
+            $hasil = DB::table("kos")->where("kos_kota",
+            "LIKE", "%".$searchstring."%")->get();
         }
         else{
-            $hasil = DB::table("kos")->paginate(5);
+            $hasil = Kos::where("kos_tipe" , "LIKE", "%".$searchjenis."%")->where("kos_kota",
+            "LIKE", "%".$searchstring."%")->get();
         }
+        // if($searchstring){
+        // $hasil = Kos::where("kos_alamat",
+        //     "LIKE", "%".$searchstring."%")->orWhere("kos_nama",
+        //     "LIKE", "%".$searchstring."%")->orWhere("kos_kota",
+        //     "LIKE", "%".$searchstring."%")->orWhere("kos_kecamatan",
+        //     "LIKE", "%".$searchstring."%")->orWhere("kos_kelurahan",
+        //     "LIKE", "%".$searchstring."%")
+        //     ->paginate(5);
+        // }
+        // else{
+        //     $hasil = DB::table("kos")->paginate(5);
+        // }
         return view("listkos",['hasilsearch'=>$hasil , 'searchstring'=>$searchstring]);
     }
+
+
     public function searchkos(Request $request){
         $searchstring = $request->searchinput;
-        $hasil = Kos::where("kos_alamat",
-            "LIKE", "%".$searchstring."%")->orWhere("kos_nama",
-            "LIKE", "%".$searchstring."%")->orWhere("kos_kota",
-            "LIKE", "%".$searchstring."%")->orWhere("kos_kecamatan",
-            "LIKE", "%".$searchstring."%")->orWhere("kos_kelurahan",
-            "LIKE", "%".$searchstring."%")
-            ->paginate(5);
-            return redirect(url("/kos"))->with('searchstring',$searchstring);
+        $searchjenis = $request->jeniskos;
+        $hargaawal = $request->hawal;
+        $hargaakhir = $request->hakhir;
+
+        if($searchjenis == "Semua"){
+            $hasil = DB::table("kos")->where("kos_kota",
+            "LIKE", "%".$searchstring."%")->get();
+
+            // ->where("
+            // SELECT
+
+            // FROM
+            //     kamar k
+            //     LEFT JOIN kos
+            // WHERE
+            // "
+            // )
+        }
+        else{
+            $hasil = Kos::where("kos_tipe" , "LIKE", "%".$searchjenis."%")->where("kos_kota",
+            "LIKE", "%".$searchstring."%")->get();
+        }
+        // $hasil = Kos::where("kos_alamat",
+        //     "LIKE", "%".$searchstring."%")->orWhere("kos_nama",
+        //     "LIKE", "%".$searchstring."%")->orWhere("kos_kota",
+        //     "LIKE", "%".$searchstring."%")->orWhere("kos_kecamatan",
+        //     "LIKE", "%".$searchstring."%")->orWhere("kos_kelurahan",
+        //     "LIKE", "%".$searchstring."%")
+        //     ->paginate(5);
+        return view("listkos",['searchstring'=>$searchstring, 'searchjenis'=>$searchjenis, 'hasilsearch'=>$hasil]);//->with('hasil',$hasil);
     }
 }
