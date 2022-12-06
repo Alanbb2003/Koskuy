@@ -74,7 +74,7 @@ Route::middleware('checklogged:pemilik')->group(function(){
         Route::get("/Hgantipass", [PemilikController::class, "Hgantipass"]);
         Route::post("/gantipass", [PemilikController::class, "gantipass"]);
         // Route::get("/HTambahKos", [PemilikController::class, "HTambahKos"]);
-        Route::get("/pasangiklan",[PemilikController::class, "HTambahKos"]);
+        // Route::get("/pasangiklan",[PemilikController::class, "HTambahKos"]);
         Route::get("/riwayattransaksi",[PemilikController::class, "HRiwayatTransaksi"]);
         Route::get("/Huploadbukti/{id}",[PemilikController::class, "HUploadBukti"]);
         Route::post("/uploadbukti/{id}",[PemilikController::class, "UploadBukti"]);

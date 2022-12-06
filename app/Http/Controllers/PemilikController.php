@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Laravolt\Indonesia\IndonesiaService;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PemilikController extends Controller
@@ -67,7 +68,8 @@ class PemilikController extends Controller
         return view("pemilik.kos",["datakos" => $data]);
     }
     public function HPasangIklan(){
-        return view("pemilik.pasangiklan");
+        $paket = DB::table("paket_iklan")->get();
+        return view("pemilik.tambahkos",["paket"=>$paket]);
     }
     public function HReqBooking(){
 
@@ -92,10 +94,6 @@ class PemilikController extends Controller
 
         Alert::success("Berhasil", "Berhasil Konfirmasi");
         return redirect()->back();
-    }
-    public function HTambahKos(){
-        $paket = DB::table("paket_iklan")->get();
-        return view("pemilik.tambahkos",["paket"=>$paket]);
     }
     public function tambahkamar(){
         return view("pemilik.tambahkamar");
