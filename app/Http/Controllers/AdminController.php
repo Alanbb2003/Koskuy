@@ -97,7 +97,7 @@ class AdminController extends Controller
             return redirect()->back();
         }
 
-        $data = DB::table("h_pembayaran")->join('paket_iklan','paket_iklan.id','=','h_pembayaran.paket_id')->where("h_pembayaran.status",'=',2)->where("h_pembayaran.tgl_trans",'>=',$tgl1)->where("h_pembayaran.tgl_trans",'<=',$tgl2)->paginate(2);
+        $data = DB::table("h_pembayaran")->join('paket_iklan','paket_iklan.id','=','h_pembayaran.paket_id')->where("h_pembayaran.status",'=',2)->where("h_pembayaran.tgl_trans",'>=',$tgl1)->where("h_pembayaran.tgl_trans",'<=',$tgl2)->get();
         // $data2 = DB::table("h_pembayaran")->where("h_pembayaran.status",'=',2)->where("tgl_trans",'>=',$tgl1)->where("tgl_trans",'<=',$tgl2)->get();
 
         // dd($data->nextPageUrl());
