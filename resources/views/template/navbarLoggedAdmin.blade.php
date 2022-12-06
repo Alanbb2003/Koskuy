@@ -22,7 +22,7 @@
             <p style="color: white">Laporan</p>
             <ul class="dropdown " >
               <li><a href="{{url('/admin/laporanpendapatan')}}">Pendapatan</a></li>
-              <li><a href="{{url('/admin/listPenyewa')}}">List Penyewa</a></li>
+              <li><a href="{{url('/admin/chartpaket')}}">Chart Paket</a></li>
               <li><a href="{{url('/admin/listpesanan')}}">Pesanan</a></li>
             </ul>
           </li>

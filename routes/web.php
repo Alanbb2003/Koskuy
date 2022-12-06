@@ -143,6 +143,7 @@ Route::middleware('checklogged:pemilik')->group(function(){
             $hpembayaran->kos_id = $item->id;
             $hpembayaran->harga = $detailpaket->harga;
             $hpembayaran->status = 0;
+            $hpembayaran->tgl_trans = now();
             $hpembayaran->save();
 
 
@@ -168,7 +169,8 @@ Route::middleware('checklogged:admin')->group(function(){
         Route::get('/konfirmasipesanan/{id}',[AdminController::class, "KonfirmasiPesanan"]);
 
         Route::get('/laporanpendapatan',[AdminController::class,"HLaporanPendapatan"]);
-
+        Route::get("/Flaporanpendapatan",[AdminController::class, "FLaporanPendapatan"]);
+        Route::get("/chartpaket",[AdminController::class, "HChartPaket"]);
         // Route::get('/home', function () {
         //     if (!Session::has('lognamaL')) {
         //         return redirect()->route('login');
@@ -195,3 +197,7 @@ Route::post("/coba",[PemilikController::class, "coba"]);
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get("/anjay", function(){
+
+});

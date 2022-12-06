@@ -29,6 +29,8 @@
                 border-color: blue;
         }
     </style>
+
+    @yield("script")
 </head>
 <body>
 
