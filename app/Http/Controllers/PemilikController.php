@@ -320,4 +320,107 @@ class PemilikController extends Controller
         }
         return view("pemilik.detailKos", compact('kos','kamar','havekamar'));
     }
+
+    public function HTambahKamarBaru($idkos){
+
+
+        return view("pemilik.tambahkamarbaru",["idkos"=>$idkos]);
+    }
+
+    public function TambahKamarBaru(Request $request, $idkos){
+
+        $jenis = $request->input("jeniskb");
+        $harga = $request->input("hargakb");
+        $jumlah = $request->input("jumlahkb");
+        $luas = $request->input("luaskb");
+        $status = $request->input("statuskb");
+        $deskripsi = $request->input("deskripsikb");
+        $ac = $request->input("ackb");
+        $kmd = $request->input("kmdkb");
+        $wifi = $request->input("wifikb");
+        $tv = $request->input("tvkb");
+        $kulkas = $request->input("kulkaskb");
+        $gambar = $request->file("gambarkb");
+        // dd($gambar);
+
+        $kos = Kos::find($idkos);
+
+        $rules =[
+                "jeniskb" => "required",
+                "hargakb" => "required",
+                "jumlahkb" => "required",
+                "luaskb" => "required",
+                "statuskb" => "required",
+                "deskripsikb" => "required",
+                "gambarkb" => "required",
+                "gambar.*" => "mimes:png,jpg,jpeg|max:2048"
+                // cek per FOTO dan SETELAH DIUPLOAD, 2mb maksimal
+                // hanya boleh .png, .jpg, .jpeg
+            ];
+        $request->validate($rules);
+
+        $namaFileGambar  = Str::random(8).".".$gambar->getClientOriginalExtension();
+        // dd($namaFileGambar);
+        $namaFolderPhoto = "gambar/";
+        // storeAs akan menyimpan default ke local
+        $gambar->storeAs($namaFolderPhoto,$namaFileGambar, 'public'); // masuk ke storage/app/public
+
+        if ($jenis == "" || $harga == "" || $jumlah == ""|| $luas == ""|| $status == ""|| $deskripsi == "") {
+            return redirect()->route('tambahkamar')->with("error", "Field Harus terisi semua!");
+        } else {
+            // $item = new Kamar();
+            // $item->jenis_kamar = $request->jenis;
+            // $item->harga_kamar = $request->harga;
+            // $item->jumlah = $request->jumlah;
+            // $item->luas = $request->luas;
+            // $item->status = $request->status;
+            // $item->deskripsi = $request->deskripsi;
+            // $item->ac = $request->ac;
+            // $item->kmd = $request->kmd;
+            // $item->wifi = $request->wifi;
+            // $item->tv = $request->tv;
+            // $item->kulkas = $request->kulkas;
+            // $item->gambar_kamar = $namaFileGambar;
+            // $item->kos_id = $kos->id;
+            // $item->save();
+
+            $k = new Kamar();
+            $k->jenis_kamar = $request->jeniskb;
+            $k->harga_kamar = $request->hargakb;
+            $k->jumlah_kamar = $request->jumlahkb;
+            $k->luas_kamar = $request->luaskb;
+            $k->status_kamar = $request->statuskb;
+            $k->deskripsi_kamar = $request->deskripsikb;
+            if ($request->ackb != null) {
+                $k->ac = 1;
+            }
+            if ($request->kmdkb != null) {
+                $k->kmd = 1;
+            }
+            if ($request->wifikb != null) {
+                $k->wifi = 1;
+            }
+            if ($request->tvkb != null) {
+                $k->tv = 1;
+            }
+            if ($request->kulkaskb != null) {
+                $k->kulkas = 1;
+            }
+            $k->gambar_kamar = $namaFileGambar;
+            $k->kos_id = $kos->id;
+            $k->save();
+
+            Alert::success("Berhasil", "Berhasil Tambah Kamar");
+            return redirect('/owner/detailkos/'.$kos->id);
+
+
+
+            // Session::put("dataKamar", $item);
+            // // $item->save();
+            // // $coba = Item::create($addItem);
+            // // return view("pemilik.preview");
+            // return redirect()->route('preview');
+        }
+
+    }
 }

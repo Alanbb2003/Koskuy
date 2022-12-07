@@ -78,6 +78,12 @@
             <h1>Pemilik belum mengisi kamar</h1>
         </div>
         @elseif ($havekamar == "have")
+        {{-- <form action="{{ url('/Htambahkos/'.$kos->id) }}" method="get" style="margin: 0">
+            <input type="submit" value="Detail" class="btn btn-success">
+        </form> --}}
+        <a href="{{ url('owner/Htambahkamarbaru/'.$kos->id) }}">
+            <button class="btn btn-success">Tambah Kamar</button>
+        </a>
         <div class="container">
             <h3>Kamar</h3>
             <table class="table table-striped">

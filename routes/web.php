@@ -81,7 +81,8 @@ Route::middleware('checklogged:pemilik')->group(function(){
         Route::post("/doAddKos", [PemilikController::class, "doAddKos"])->name("doAddKos");
         Route::get("/doAddKamar", [PemilikController::class, "tambahkamar"])->name("tambahkamar");
         Route::post("/doAddKamar", [PemilikController::class, "doAddKamar"])->name("doAddKamar");
-
+        Route::get("/Htambahkamarbaru/{idkos}",[PemilikController::class, "HTambahKamarBaru"]);
+        Route::post("/tambahkamarbaru/{idkos}",[PemilikController::class, "TambahKamarBaru"]);
         Route::get("/detailkos/{id}",[PemilikController::class, "detailKos"])->name("detailkos");
 
         Route::get("/preview", [PemilikController::class, "preview"])->name("preview");
