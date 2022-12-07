@@ -66,26 +66,18 @@ class Pagecontroller extends Controller
     public function searchkos(Request $request){
         $searchstring = $request->searchinput;
         $searchjenis = $request->jeniskos;
+        $filterkota = $request->kotafilter;
         $hargaawal = $request->hawal;
         $hargaakhir = $request->hakhir;
 
-        if($searchjenis == "Semua"){
-            $hasil = DB::table("kos")->where("kos_kota",
+        if($searchjenis == "Semua" && $filterkota == "Semua"){
+            $hasil = DB::table("kos")->where("kos_nama",
             "LIKE", "%".$searchstring."%")->get();
-
-            // ->where("
-            // SELECT
-
-            // FROM
-            //     kamar k
-            //     LEFT JOIN kos
-            // WHERE
-            // "
-            // )
+        
         }
         else{
-            $hasil = Kos::where("kos_tipe" , "LIKE", "%".$searchjenis."%")->where("kos_kota",
-            "LIKE", "%".$searchstring."%")->get();
+            $hasil = Kos::where("kos_tipe" , "LIKE", "%".$searchjenis."%")->where("kos_nama",
+            "LIKE", "%".$searchstring."%")->orWhere("kos_kota", "LIKE", "%".$filterkota."%")->get();
         }
         // $hasil = Kos::where("kos_alamat",
         //     "LIKE", "%".$searchstring."%")->orWhere("kos_nama",
