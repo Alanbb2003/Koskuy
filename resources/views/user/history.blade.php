@@ -21,19 +21,16 @@
       </tr>
       @foreach ($history as $h)
       <tr>
-<<<<<<< HEAD
-=======
           <td>{{ $h->booking_id}}</td>
->>>>>>> 044f667b69eb4b266a0f53d3a188a592be41ff53
           <td>{{ $h->kos_nama}}</td>
           <td>{{ $h->kos_tipe}}</td>
           <td>{{ $h->kos_alamat}}</td>
           <td>{{ $h->kos_notelp}}</td>
-          <td>{{ $h->status}}</td>
-          @if ($h->status == "pending")
+          <td>{{ $h->booking_status}}</td>
+          @if ($h->booking_status == "pending")
           <form method="post"  action="{{route('cancelbook')}}">
             @csrf
-            <input type="hidden" name="id_booking" value="{{$h->id}}">
+            <input type="hidden" name="id_booking" value="{{$h->booking_id}}">
 
             <td><button type="submit" class="btn btn-danger">Cancel</button></td>
         </form>
