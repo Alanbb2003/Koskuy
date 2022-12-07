@@ -15,7 +15,7 @@
     ></div>
     <div
       class="img overlay carousel-item" data-bs-interval="1000"
-      style="background-image: url('public/images/hero_bg_1.jpg')"
+      style="background-image: url('{{asset('images/hero_bg_3.jpg')}}')"
     ></div>
   </div>
 

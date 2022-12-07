@@ -70,5 +70,14 @@ class HPembayaranSeeder extends Seeder
         $n->status = 2;
         $n->tgl_trans = now();
         $n->save();
+
+        $n = new HPembayaran();
+        $n->user_id = 2;
+        $n->paket_id = 2;
+        $n->kos_id = 3;
+        $n->harga = 200000;
+        $n->status = 2;
+        $n->tgl_trans = now();
+        $n->save();
     }
 }

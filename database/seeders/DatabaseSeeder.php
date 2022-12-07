@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             ProvincesSeeder::class,
             CitiesSeeder::class,
             DistrictsSeeder::class,
+            BookingSeeder::class
             // VillagesSeeder::class,
         ]);
     }
