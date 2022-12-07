@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer("id_penyewa");
             $table->integer("id_owner");
             $table->integer("id_kos");
+            $table->integer("id_kamar");
             $table->string("booking_status");
             $table->timestamps();
         });

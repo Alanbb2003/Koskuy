@@ -137,6 +137,7 @@ class UserController extends Controller
         $booking->id_penyewa = $request->id_penyewa;
         $booking->id_owner = $request->id_owner;
         $booking->id_kos = $request->id_kos;
+        $booking->id_kamar = $request->id_kamar;
         $booking->booking_status = "pending";
         $booking->save();
         Alert::success("Berhasil", "Berhasil Booking");

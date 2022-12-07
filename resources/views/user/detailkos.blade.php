@@ -66,7 +66,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-sm mt-3">
+        {{-- <div class="container-sm mt-3">
             <form method="post"  action="{{route('booking')}}">
                 @csrf
                 <input type="hidden" name="id_kos" value="{{$detail->id}}">
@@ -75,7 +75,7 @@
 
                 <button class="btn btn-success">Pesan </button>
             </form>
-        </div>
+        </div> --}}
     </div>
     <br>
         @if($havekamar =="none")
@@ -102,9 +102,18 @@
                 <td>{{ $h->luas_kamar}}</td>
                 <td>{{ $h->status_kamar}}</td>
                 <td><img src="{{ asset("storage/gambar/".$h->gambar_kamar) }}" class="img-fluid"></td>
-                {{-- <td>
-                        <a href="" class="btn btn-info">Detail</a>
-                </td> --}}
+                <td>
+                    <form method="post"  action="{{route('booking')}}">
+                        @csrf
+                        <input type="hidden" name="id_kos" value="{{$detail->id}}">
+                        <input type="hidden" name="id_owner" value="{{$detail->owner}}">
+                        <input type="hidden" name="id_penyewa" value="{{$users}}">
+                        <input type="hidden" name="id_kamar" value="{{$h->kamar_id}}">
+        
+                        <button class="btn btn-success">Pesan </button>
+                    </form>
+                    {{-- <a href="" class="btn btn-info">Pesan</a> --}}
+                </td> 
             </tr>
             @endforeach
         </table>
