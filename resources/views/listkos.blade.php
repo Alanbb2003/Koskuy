@@ -30,8 +30,16 @@
   @csrf
   <div class="input-group mb-3">
 
-    <h5>jenis Kos : &nbsp;&nbsp;</h5>
-      <select class="custom-select" id="inputGroupSelect01" name="jeniskos" style="width: 150px">
+    <div class="form-outline">
+      <input  type="text" name="searchinput" placeholder="Masukkan Nama Kos"  class="form-control" style="width : 300px" />
+    </div>
+    <button id="search-button" type="submit" class="btn btn-primary">
+      Search
+    </button> 
+    <br>
+    &nbsp;&nbsp;
+    <h5>Jenis Kos : &nbsp;&nbsp;</h5>
+      <select class="custom-select theSelect" id="inputGroupSelect01" name="jeniskos" style="width: 150px">
         <option selected  value="Semua">Semua</option>
         <option value="Putra">Putra</option>
         <option value="Putri">Putri</option>
@@ -41,7 +49,7 @@
       {{-- <h5>Harga : </h5>
       <input  type="text" name="hawal" class="form-control"/> - <input  type="text" name="hakhir" class="form-control"/> --}}
       &nbsp;&nbsp;
-      <h5>Kota :&nbsp;&nbsp; </h5>  <br>
+    <h5>Kota :&nbsp;&nbsp; </h5>  <br>
     <select name="kotafilter" id="" class="form-select theSelect" style="width: 400px">
         <option value="Semua">Semua</option>
         @for ($i = 0; $i < count($cities);$i++)
@@ -50,16 +58,8 @@
 
         @endfor
     </select>
-
-    &nbsp;&nbsp;
-      <div class="form-outline">
-        <input  type="text" name="searchinput" placeholder="Masukkan Nama Kos"  class="form-control" style="width : 300px" />
-      </div>
-      <button id="search-button" type="submit" class="btn btn-primary">
-        Search
-      </button>    
-
   </div>
+
 </form>
 
 <div id="search-result">
@@ -81,7 +81,11 @@
     @endif
 </div>
 </div>
+<script>
+  $(".theSelect").select2();
+</script>
 @endsection
+
 <script>
     function search(e)
 {
@@ -116,3 +120,5 @@ function renderHasil(data)
         .innerHTML = html;
 }
 </script>
+
+
