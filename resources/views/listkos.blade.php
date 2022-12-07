@@ -10,12 +10,28 @@
   <h1>Search Berdasarkan "{{$searchstring}}"</h1><br>
 </div>
 @endif
+@php
+                // \Indonesia::allProvinces()
+        // \Indonesia::paginateProvinces($numRows = 15)
+        // \Indonesia::allCities()
+        // \Indonesia::paginateCities($numRows = 15)
+        // \Indonesia::allDistricts()
+        // \Indonesia::paginateDistricts($numRows = 15)
+        // \Indonesia::allVillages()
+        // \Indonesia::paginateVillages($numRows = 15)
+        $provinces = \Indonesia::allProvinces();
+        $cities = \Indonesia::allCities();
+        
+        $districts = \Indonesia::allDistricts();
+        $villages = \Indonesia::allVillages();
+        // dd($location);
+    @endphp
 <form method="post"  action="{{route('searchkos')}}">
   @csrf
   <div class="input-group mb-3">
 
-    <h5>jenis Kos : </h5>
-      <select class="custom-select" id="inputGroupSelect01" name="jeniskos">
+    <h5>jenis Kos : &nbsp;&nbsp;</h5>
+      <select class="custom-select" id="inputGroupSelect01" name="jeniskos" style="width: 150px">
         <option selected  value="Semua">Semua</option>
         <option value="Putra">Putra</option>
         <option value="Putri">Putri</option>
@@ -24,13 +40,25 @@
 
       {{-- <h5>Harga : </h5>
       <input  type="text" name="hawal" class="form-control"/> - <input  type="text" name="hakhir" class="form-control"/> --}}
+      &nbsp;&nbsp;
+      <h5>Kota :&nbsp;&nbsp; </h5>  <br>
+    <select name="kotafilter" id="" class="form-select theSelect" style="width: 400px">
+        <option value="Semua">Semua</option>
+        @for ($i = 0; $i < count($cities);$i++)
 
+            <option value="{{$cities[$i]->name}}">{{$cities[$i]->code." - ".$cities[$i]->name}}</option>
+
+        @endfor
+    </select>
+
+    &nbsp;&nbsp;
       <div class="form-outline">
-        <input  type="text" name="searchinput" placeholder="Masukkan lokasi. contoh : Surabaya"  class="form-control"  />
+        <input  type="text" name="searchinput" placeholder="Masukkan Nama Kos"  class="form-control" style="width : 300px" />
       </div>
       <button id="search-button" type="submit" class="btn btn-primary">
         Search
-      </button>      
+      </button>    
+
   </div>
 </form>
 
