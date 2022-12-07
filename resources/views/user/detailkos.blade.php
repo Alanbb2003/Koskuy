@@ -101,7 +101,7 @@
                 <td>{{ $h->jumlah_kamar}}</td>
                 <td>{{ $h->luas_kamar}}</td>
                 <td>{{ $h->status_kamar}}</td>
-                <td><img src="{{ asset("storage/gambar/".$h->gambar_kamar) }}" class="img-fluid"></td>
+                <td><img src="{{ asset("storage/gambar/".$h->gambar_kamar) }}" class="img-fluid" style="width: 100px;height: 100px;"></td>
                 <td>
                     <form method="post"  action="{{route('booking')}}">
                         @csrf
