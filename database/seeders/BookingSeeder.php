@@ -21,7 +21,7 @@ class BookingSeeder extends Seeder
         $k->id_owner = "2";
         $k->id_kos = "1";
         $k->id_kamar = "1";
-        $k->booking_status = "acc";
+        $k->booking_status = "done";
         $k->created_at="2022-09-01 10:50:52";
         $k->updated_at="2022-09-01 10:50:52";
         $k->save();
@@ -32,7 +32,7 @@ class BookingSeeder extends Seeder
         $k->id_owner = "2";
         $k->id_kos = "2";
         $k->id_kamar = "2";
-        $k->booking_status = "acc";
+        $k->booking_status = "done";
         $k->created_at="2022-10-01 10:50:52";
         $k->updated_at="2022-10-01 10:50:52";
         $k->save();
@@ -43,7 +43,7 @@ class BookingSeeder extends Seeder
         $k->id_owner = "2";
         $k->id_kos = "2";
         $k->id_kamar = "2";
-        $k->booking_status = "acc";
+        $k->booking_status = "done";
         $k->created_at="2022-09-02 10:50:52";
         $k->updated_at="2022-09-02 10:50:52";
         $k->save();
@@ -54,7 +54,7 @@ class BookingSeeder extends Seeder
         $k->id_owner = "2";
         $k->id_kos = "1";
         $k->id_kamar = "1";
-        $k->booking_status = "acc";
+        $k->booking_status = "done";
         $k->created_at="2022-08-05 10:50:52";
         $k->updated_at="2022-08-05 10:50:52";
         $k->save();
@@ -65,7 +65,7 @@ class BookingSeeder extends Seeder
         $k->id_owner = "2";
         $k->id_kos = "2";
         $k->id_kamar = "2";
-        $k->booking_status = "acc";
+        $k->booking_status = "done";
         $k->created_at="2022-11-05 10:50:52";
         $k->updated_at="2022-11-05 10:50:52";
         $k->save();
@@ -76,7 +76,7 @@ class BookingSeeder extends Seeder
         $k->id_owner = "2";
         $k->id_kos = "2";
         $k->id_kamar = "3";
-        $k->booking_status = "acc";
+        $k->booking_status = "done";
         $k->created_at="2022-11-20 10:50:52";
         $k->updated_at="2022-11-20 10:50:52";
         $k->save();
