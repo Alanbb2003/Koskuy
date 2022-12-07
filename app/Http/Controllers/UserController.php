@@ -144,7 +144,7 @@ class UserController extends Controller
     }
     public function cancelbook(Request $request){
         $booking = Booking::find($request->id_booking);
-        $booking->status = "canceled";
+        $booking->booking_status = "canceled";
         $booking->save();
         Alert::success('Berhasil', "Cancel");
         return redirect('/user/history');
