@@ -51,6 +51,7 @@ Route::middleware('checklogged:pelanggan')->group(function(){
         Route::get("/kos",[Pagecontroller::class,"listkos"])->name("listkos");
         Route::post("/kos",[Pagecontroller::class,"searchkos"])->name("searchkos");
         Route::get('/kos/{id}',[UserController::class,"detailkos"]);
+        Route::get('/kos/kamar/{id}',[UserController::class,"detailkamar"]);
         Route::post('/kos/booking',[UserController::class,"booking"])->name("booking");
         Route::get('/profile',[UserController::class,"profileuser"]);
         Route::get('/history',[UserController::class,"historypage"]);

@@ -86,6 +86,7 @@ class LoginController extends Controller
                 "password" => password_hash($request->regPass,PASSWORD_DEFAULT),
                 "user_telp" => $request->regTelp,
                 "user_role" => $request->role,
+                "user_gambar"=> "Defaultpfp.png",
                 "status" => 1
 
             ]);

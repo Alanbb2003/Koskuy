@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
         $d->password = password_hash("123",PASSWORD_DEFAULT);
         $d->user_telp = "08592212311";
         $d->user_role = 1;
+        $d->user_gambar="Defaultpfp.png";
         $d->status = 1;
         $d->save();
 
@@ -32,6 +33,7 @@ class UserSeeder extends Seeder
         $d->password = password_hash("123",PASSWORD_DEFAULT);
         $d->user_telp = "08592212311";
         $d->user_role = 2;
+        $d->user_gambar="Defaultpfp.png";
         $d->status = 1;
         $d->save();
 
@@ -42,6 +44,7 @@ class UserSeeder extends Seeder
         $d->password = password_hash("admin",PASSWORD_DEFAULT);
         $d->user_telp = "08592212311";
         $d->user_role = 3;
+        $d->user_gambar="Defaultpfp.png";
         $d->status = 1;
         $d->save();
     }

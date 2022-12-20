@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -69,10 +70,14 @@ class UserController extends Controller
         return view("user.history",['history'=>$history]);
     }
     public function editpage(){
-
-        return view("user.editprofile");
+        $userid = Session::get('user');
+        $data= json_decode( json_encode($userid), true);
+        $userid = $data['id'];
+        $user = DB::table('user')->where("id","=",$userid)->first();
+        return view("user.editprofile",['user'=>$user]);
     }
     public function editfunc(Request $request){
+        $gambar = $request->file("edtphoto");
         $user = Session::get('user');
             $iduser = $user->id;
             $u = User::find($iduser);
@@ -81,6 +86,7 @@ class UserController extends Controller
                 "edtusername"=>"required",
                 "edtfullname"=>"required",
                 "edtnumber"=>"required|numeric",
+                "edtphoto."=>"mimes:png,jpg,jpeg|max:2048",
                 "edtoldpass"=>'required',
                 "edtnewpass"=>'required',
                 "edtconpass"=>'required|same:edtnewpass'
@@ -91,46 +97,48 @@ class UserController extends Controller
                 "same"=>"Must be the same as new password"
             ];
         if(
-            // $request->validate([
-            // "edtusername"=>"required",
-            // "edtfullname"=>"required",
-            // "edtnumber"=>"required|numeric",
-            // "edtoldpass"=>'required',
-            // "edtnewpass"=>'required',
-            // "edtconpass"=>'required|same:edtnewpass'
-            // ])
             $request->validate($rules, $messages)
         ){
+            $usernamehave = DB::table('user')->where("username","=",$request->edtusername);
             if (!password_verify($request->edtoldpass,$passlama)) {
                 # code...
                 Alert::warning('Error', "Password Lama tidak sesuai");
 
                 return redirect('/user/profile');
+            }else if($usernamehave != null){
+                Alert::warning('Error', "Username sudah dipakai");
+
+                return redirect('/user/profile');
             }
             else{
-
-                $u = User::find($iduser);
-                Session::put("user",$u);
-                $u->username = $request->edtusername;
-                $u->fullname = $request->edtfullname;
-                $u->user_telp = $request->edtnumber;
-                $u->password = Hash::make($request->edtnewpass);
-                $u->save();
+                $photo = $request->edtphoto;
+                if($photo!= null){
+                    $namaFileGambar  = Str::random(8).".".$gambar->getClientOriginalExtension();
+                    $namaFolderPhoto = "gambar/";
+                    // storeAs akan menyimpan default ke local
+                    $gambar->storeAs($namaFolderPhoto,$namaFileGambar, 'public');
+                    $u = User::find($iduser);
+                    $u->username = $request->edtusername;
+                    $u->fullname = $request->edtfullname;
+                    $u->user_telp = $request->edtnumber;
+                    $u->password = Hash::make($request->edtnewpass);
+                    $u->user_gambar = $namaFileGambar;
+                    $u->save();
+                    Session::put("user",$u);
+                }else{
+                    $u = User::find($iduser);
+                    $u->username = $request->edtusername;
+                    $u->fullname = $request->edtfullname;
+                    $u->user_telp = $request->edtnumber;
+                    $u->password = Hash::make($request->edtnewpass);
+                    $u->save();
+                    Session::put("user",$u);
+                }
+                
                 Alert::success('Berhasil', "Ganti");
                 return redirect('/user/profile');
             }
         }
-        // $result = DB::update('update user set username = ?, fullname = ?, user_telp = ?',[
-        //     $request->edtusername,
-        //     $request->edtfullname,
-        //     $request->edtnumber
-        // ]);
-
-        // if($result){
-        //     return redirect('/user/profile')->with("success", "berhasil ubah profile user ");
-        // }else{
-        //     return redirect('/user/profile')->with("error", "Gagal ubah prodile user ");
-        // }
     }
     public function booking(Request $request){
         $booking = new Booking();
@@ -149,5 +157,14 @@ class UserController extends Controller
         $booking->save();
         Alert::success('Berhasil', "Cancel");
         return redirect('/user/history');
+    }
+    public function detailkamar($id){
+        try{
+            $d = DB::table("Kamar")->where("kamar_id","=",$id)->first();
+            //select foto , d_kos, dan furnitur waktu selesai seeder
+            return view("user.detailkamar",['detail'=>$d]);
+        }catch(Exception $x){
+            echo $x;
+        }
     }
 }

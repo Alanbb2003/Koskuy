@@ -20,7 +20,7 @@ class KosSeeder extends Seeder
         $k->kos_tipe = "Putra";
         $k->kos_alamat = "siduarjo";
         $k->kos_deskripsi = "ini adalah data dummy untuk mencoba";
-        $k->kos_gambar = "";
+        $k->kos_gambar = "1nudxo2K.jpg";
         $k->kos_notelp = "0849123123";
         $k->kos_provinsi = "jawa timur";
         $k->kos_kota = "surabaya";
@@ -37,7 +37,7 @@ class KosSeeder extends Seeder
         $k->kos_tipe = "Putri";
         $k->kos_alamat = "siduarjo";
         $k->kos_deskripsi = "ini adalah data dummy untuk mencoba";
-        $k->kos_gambar = "";
+        $k->kos_gambar = "asdw.jpg";
         $k->kos_notelp = "0849123123";
         $k->kos_provinsi = "jawa timur";
         $k->kos_kota = "surabaya";
@@ -54,7 +54,7 @@ class KosSeeder extends Seeder
         $k->kos_tipe = "campur";
         $k->kos_alamat = "Gubeng";
         $k->kos_deskripsi = "ini adalah data dummy untuk mencoba";
-        $k->kos_gambar = "";
+        $k->kos_gambar = "ddwdw.jpg";
         $k->kos_notelp = "0849123123";
         $k->kos_provinsi = "jawa timur";
         $k->kos_kota = "surabaya";

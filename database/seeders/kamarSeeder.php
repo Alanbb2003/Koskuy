@@ -22,13 +22,13 @@ class kamarSeeder extends Seeder
         $k->jumlah_kamar="5";
         $k->luas_kamar = "4";
         $k->status_kamar = "Tersedia";
-        $k->deskripsi_kamar = "ini kamar test";
+        $k->deskripsi_kamar = "Kamar dengan fasilitas lengkap";
         $k->ac="1";
         $k->kmd="1";
         $k->wifi = "1";
         $k->tv="1";
         $k->kulkas="1";
-        $k->gambar_kamar="aaaaa";
+        $k->gambar_kamar="defefe.jpg";
         $k->created_at="2022-11-20 10:50:52";
         $k->updated_at="2022-11-20 10:50:52";
         $k->save();
@@ -46,7 +46,7 @@ class kamarSeeder extends Seeder
         $k->wifi = "1";
         $k->tv="1";
         $k->kulkas="1";
-        $k->gambar_kamar="aaaaa";
+        $k->gambar_kamar="dwdwda.jpg";
         $k->created_at="2022-11-20 10:50:52";
         $k->updated_at="2022-11-20 10:50:52";
         $k->save();
@@ -64,7 +64,7 @@ class kamarSeeder extends Seeder
         $k->wifi = "1";
         $k->tv="1";
         $k->kulkas="1";
-        $k->gambar_kamar="aaaaa";
+        $k->gambar_kamar="efece.jpg";
         $k->created_at="2022-11-20 10:50:52";
         $k->updated_at="2022-11-20 10:50:52";
         $k->save();

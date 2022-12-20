@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string("password");
             $table->string("user_telp");
             $table->string("user_role");
+            $table->string("user_gambar");
             $table->integer("status");
             $table->rememberToken();
             $table->timestamps();
