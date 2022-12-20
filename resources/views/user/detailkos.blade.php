@@ -36,6 +36,46 @@
                    <p>{{$detail->kos_deskripsi}}</p>
                 </div>
                 <div class="mb-5 wow fadeIn">
+                    <div class="text-start mb-1-6 wow fadeIn">
+                        <h2 class="h1 mb-0 text-primary">#Tipe Kamar</h2><br>
+                    </div>
+                    @if ($havekamar =="have")
+                        <ol>
+                        @foreach ($kamar as $i)
+                        <div class="text-start mb-1-6 wow fadeIn">
+                            <li class="h2 mb-1 text-primary"><h3 class="h2 mb-1 text-primary">Kamar {{ $i->jenis_kamar}}</h3></li>
+                        </div>
+                        <div class="text-start ml-1 mb-1-6 wow fadeIn">
+                            <h4 class="h3 mb-0 text-primary">Fasilitas</h4>
+                            <ul>
+                            <li><h4 class="h4 mb-0 text-primary">Luas Kamar: {{ $i->luas_kamar}}M²</h4></li>
+                            @if ($i->ac != null)
+                                <li><h4 class="h4 mb-0 text-primary">Ac</h4></li>
+                            @endif
+                            @if ($i->kmd != null)
+                                <li><h4 class="h4 mb-0 text-primary">Kamar Mandi Dalam</h4></li>
+                            @endif
+                            @if ($i->wifi != null)
+                                <li><h4 class="h4 mb-0 text-primary">WiFi</h4></li>
+                            @endif
+                            @if ($i->tv != null)
+                                <li><h4 class="h4 mb-0 text-primary">TV</h4></li>
+                            @endif
+                            @if ($i->kulkas != null)
+                                <li><h4 class="h4 mb-0 text-primary">Kulkas</h4></li>
+                            @endif
+                            </ul>
+                        </div>
+                        @endforeach
+                    </ol>
+                    @elseif ($havekamar == "none")
+                    <div class="text-start mb-1-6 wow fadeIn">
+                        <h3 class="h1 mb-0 text-primary">Tidak Ada Kamar</h3>
+                    </div>
+                    @endif
+
+                </div>
+                <div class="mb-5 wow fadeIn">
                     {{-- <div class="text-start mb-1-6 wow fadeIn">
                         <h2 class="mb-0 text-primary">#Education</h2>
                     </div> --}}
@@ -109,11 +149,11 @@
                         <input type="hidden" name="id_owner" value="{{$detail->owner}}">
                         <input type="hidden" name="id_penyewa" value="{{$users}}">
                         <input type="hidden" name="id_kamar" value="{{$h->kamar_id}}">
-        
+
                         <button class="btn btn-success">Pesan </button>
                     </form>
                     {{-- <a href="" class="btn btn-info">Pesan</a> --}}
-                </td> 
+                </td>
             </tr>
             @endforeach
         </table>

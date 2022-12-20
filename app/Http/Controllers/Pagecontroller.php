@@ -14,7 +14,8 @@ class Pagecontroller extends Controller
 
         $k = DB::table("kos")->where("status",'=',"aktif")->get();
 
-        return view("home",['kos'=>$k]);
+
+        return view("home",['kos'=>$k, ]);
     }
 
     public function detailkos($id){

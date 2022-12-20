@@ -76,7 +76,7 @@
     <div class="col-md-3 mx-1" style="float:left">
       <div class="card mb-2">
         <img class="card-img-top"
-             src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
+             src="{{ asset("storage/gambar/".$k->kos_gambar) }}" alt="Card image cap">
         <div class="card-body">
           <h4 class="card-title">{{$k->kos_nama}}</h4>
           <p class="card-text">kos {{$k->kos_tipe}}, {{$k->kos_alamat}}</p>
